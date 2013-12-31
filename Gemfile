@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.1'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -44,4 +44,14 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'devise'
+gem 'mysql2'
+gem 'nested_form'
+gem 'therubyracer'
+gem "less-rails"
+gem "twitter-bootstrap-rails"
+gem 'inherited_resources'
+gem 'better_errors'
+gem 'paperclip'
+gem 'devise', '~> 3.2'
+gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'jquery-ui-rails'
