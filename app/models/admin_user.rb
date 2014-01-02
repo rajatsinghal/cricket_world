@@ -3,4 +3,7 @@ class AdminUser < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, 
          :recoverable, :rememberable, :trackable, :validatable
+  
+  has_many :teams
+  accepts_nested_attributes_for :teams, allow_destroy: true 
 end
