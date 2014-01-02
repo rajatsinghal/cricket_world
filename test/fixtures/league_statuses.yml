@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  league_id: 1
+  team_id: 1
+  matches_played: 1
+  position: 1
+  wins: 1
+  losses: 1
+  ties: 1
+  points: 1
+  run_rate: 9.99
+
+two:
+  league_id: 1
+  team_id: 1
+  matches_played: 1
+  position: 1
+  wins: 1
+  losses: 1
+  ties: 1
+  points: 1
+  run_rate: 9.99

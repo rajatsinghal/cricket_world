@@ -1,5 +1,6 @@
 <% current_admin_user.teams.build %>
 <%= semantic_form_for(current_admin_user, :url=>admin_admin_user_path(current_admin_user), builder: ActiveAdmin::FormBuilder) do |f| %>
+  <%= f.semantic_errors *f.object.errors.keys %>
   <% f.has_many :teams, :allow_destroy => true do |p| %>
     <%= p.input :name %>
   <% end %>
