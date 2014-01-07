@@ -1,6 +1,6 @@
 ActiveAdmin.register User do
   
-  permit_params :name, :email, :password, :password_confirmation, :phone_number, players_attributes: [:id, :team_id, :_destroy], team_managers_attributes: [:id, :team_id, :_destroy]
+  permit_params :name, :email, :phone_number, :password, :password_confirmation, :temporary_password, players_attributes: [:id, :team_id, :_destroy], team_managers_attributes: [:id, :team_id, :_destroy]
   
   form do |f|
     f.inputs "User Details" do
@@ -8,8 +8,6 @@ ActiveAdmin.register User do
       f.input :name
       f.input :email
       f.input :phone_number
-      f.input :password
-      f.input :password_confirmation
       f.inputs "Plays For" do
         f.has_many :players, :allow_destroy => true do |p|
           p.input :team, :collection => Team.all.map {|team| [team.name, team.id]}
@@ -52,6 +50,14 @@ ActiveAdmin.register User do
       user.team_managers.map {|c| c.team.name}.join(', ')
     end
     actions
+  end
+  
+  controller do
+    def create
+      random_temporary_password = User.get_random_temporary_password
+      params[:user].merge!({ password: random_temporary_password, password_confirmation: random_temporary_password, temporary_password: random_temporary_password })
+      create!
+    end
   end
   
 end

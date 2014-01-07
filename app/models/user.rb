@@ -10,4 +10,15 @@ class User < ActiveRecord::Base
   
   accepts_nested_attributes_for :players, :allow_destroy => true
   accepts_nested_attributes_for :team_managers, :allow_destroy => true
+  
+  attr_accessor :temporary_password
+  after_create :send_invitation
+  
+  def self.get_random_temporary_password
+    (0...9).map { (65 + rand(26)).chr }.join
+  end
+  
+  def send_invitation
+    InvitationMailer.send_invitation(self).deliver
+  end
 end
