@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140102125655) do
+ActiveRecord::Schema.define(version: 20140107121756) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -67,6 +67,20 @@ ActiveRecord::Schema.define(version: 20140102125655) do
     t.datetime "updated_at"
   end
 
+  create_table "players", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "team_managers", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "teams", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -76,7 +90,9 @@ ActiveRecord::Schema.define(version: 20140102125655) do
   end
 
   create_table "users", force: true do |t|
+    t.string   "name"
     t.string   "email",                  default: "", null: false
+    t.string   "phone_number"
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"

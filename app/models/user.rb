@@ -3,4 +3,11 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  validates_presence_of :name, :email, :phone_number
+  
+  has_many :players
+  has_many :team_managers
+  
+  accepts_nested_attributes_for :players, :allow_destroy => true
+  accepts_nested_attributes_for :team_managers, :allow_destroy => true
 end
