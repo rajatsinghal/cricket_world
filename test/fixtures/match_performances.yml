@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  match_id: 1
+  team_id: 1
+  player_id: 1
+  batting_position: 1
+  runs_scored: 1
+  balls_faced: 1
+  fours: 1
+  sixes: 1
+  out: false
+  out_bowler_id: 1
+  out_fielder_id: 1
+  mode_of_dismissal: MyString
+  bowling_position: 1
+  balls_bowled: 1
+  wickets: 1
+  runs_conceded: 1
+  maiden_overs: 1
+  catches: 1
+  stumpings: 1
+
+two:
+  match_id: 1
+  team_id: 1
+  player_id: 1
+  batting_position: 1
+  runs_scored: 1
+  balls_faced: 1
+  fours: 1
+  sixes: 1
+  out: false
+  out_bowler_id: 1
+  out_fielder_id: 1
+  mode_of_dismissal: MyString
+  bowling_position: 1
+  balls_bowled: 1
+  wickets: 1
+  runs_conceded: 1
+  maiden_overs: 1
+  catches: 1
+  stumpings: 1

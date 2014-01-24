@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  toss_winner_team_id: 1
+  toss_choice: MyString
+
+two:
+  toss_winner_team_id: 1
+  toss_choice: MyString

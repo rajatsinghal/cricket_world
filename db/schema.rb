@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140123140917) do
+ActiveRecord::Schema.define(version: 20140124113612) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -67,6 +67,49 @@ ActiveRecord::Schema.define(version: 20140123140917) do
     t.datetime "updated_at"
   end
 
+  create_table "match_innings", force: true do |t|
+    t.integer  "match_id"
+    t.integer  "number"
+    t.integer  "wides"
+    t.integer  "no_balls"
+    t.integer  "byes"
+    t.integer  "leg_byes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "match_performances", force: true do |t|
+    t.integer  "match_id"
+    t.integer  "team_id"
+    t.integer  "player_id"
+    t.integer  "batting_position"
+    t.integer  "runs_scored"
+    t.integer  "balls_faced"
+    t.integer  "fours"
+    t.integer  "sixes"
+    t.boolean  "out"
+    t.integer  "out_bowler_id"
+    t.integer  "out_fielder_id"
+    t.string   "mode_of_dismissal"
+    t.integer  "bowling_position"
+    t.integer  "balls_bowled"
+    t.integer  "wickets"
+    t.integer  "runs_conceded"
+    t.integer  "maiden_overs"
+    t.integer  "catches"
+    t.integer  "stumpings"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "match_results", force: true do |t|
+    t.integer  "match_id"
+    t.integer  "toss_winner_team_id"
+    t.string   "toss_choice"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "matches", force: true do |t|
     t.integer  "home_team_id"
     t.integer  "away_team_id"
@@ -74,6 +117,7 @@ ActiveRecord::Schema.define(version: 20140123140917) do
     t.string   "stadium_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status"
   end
 
   create_table "players", force: true do |t|
