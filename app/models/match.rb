@@ -7,6 +7,7 @@ class Match < ActiveRecord::Base
   belongs_to :away_team, :class_name=>'Team', :foreign_key=>'away_team_id'
   has_one :match_result
   has_many :match_innings
+  has_many :match_players
   
   validates_presence_of :home_team_id, :away_team_id
   
@@ -15,4 +16,6 @@ class Match < ActiveRecord::Base
   def default_status
     self.status = STATUS_INITIALIZED
   end
+  
+  scope :initialized, lambda { where(:status => STATUS_INITIALIZED) }
 end

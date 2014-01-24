@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140124113612) do
+ActiveRecord::Schema.define(version: 20140124135247) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20140124113612) do
 
   create_table "match_innings", force: true do |t|
     t.integer  "match_id"
+    t.integer  "team_id"
     t.integer  "number"
     t.integer  "wides"
     t.integer  "no_balls"
@@ -98,6 +99,16 @@ ActiveRecord::Schema.define(version: 20140124113612) do
     t.integer  "maiden_overs"
     t.integer  "catches"
     t.integer  "stumpings"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "match_players", force: true do |t|
+    t.integer  "match_id"
+    t.integer  "team_id"
+    t.integer  "player_id"
+    t.boolean  "is_captain"
+    t.boolean  "is_wicket_keeper"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

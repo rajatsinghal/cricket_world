@@ -1,0 +1,8 @@
+<ul>
+<% @matches.each do |match| %>
+	<li>
+		<%= get_match_title(match) %>
+		<%= link_to "Update Scores", upload_lineup_match_path(match) %>
+	</li>
+<% end %>
+</ul>
