@@ -16,4 +16,8 @@ class MatchResult < ActiveRecord::Base
       return match.get_opponent_team_id(toss_winner_team_id)
     end
   end
+  
+  def second_batting_team_id
+    return match.get_opponent_team_id(first_batting_team_id)
+  end
 end

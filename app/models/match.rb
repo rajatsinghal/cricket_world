@@ -22,12 +22,19 @@ class Match < ActiveRecord::Base
     self.status = STATUS_INITIALIZED
   end
   
-  def create_first_inning
+  def create_innings
     if(!self.first_match_inning)
       self.build_first_match_inning({:team_id=>match_result.first_batting_team_id, :number=>1})
       self.first_match_inning.save
       match_players.filter_team(match_result.first_batting_team_id).each do |match_player|
         self.match_performances.create({:team_id=>match_result.first_batting_team_id, :player_id=>match_player.player_id})
+      end
+    end
+    if(!self.second_match_inning)
+      self.build_second_match_inning({:team_id=>match_result.second_batting_team_id, :number=>1})
+      self.second_match_inning.save
+      match_players.filter_team(match_result.second_batting_team_id).each do |match_player|
+        self.match_performances.create({:team_id=>match_result.second_batting_team_id, :player_id=>match_player.player_id})
       end
     end
   end
@@ -43,6 +50,14 @@ class Match < ActiveRecord::Base
   def first_batting_performances
     if(match_result.first_batting_team_id)
       return self.match_performances.filter_team(match_result.first_batting_team_id)
+    else
+      return NULL
+    end
+  end
+  
+  def second_batting_performances
+    if(match_result.second_batting_team_id)
+      return self.match_performances.filter_team(match_result.second_batting_team_id)
     else
       return NULL
     end
