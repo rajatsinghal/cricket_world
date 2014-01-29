@@ -1,0 +1,3 @@
+class TeamBMatchPlayer < MatchPlayer
+  
+end

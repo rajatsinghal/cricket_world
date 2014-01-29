@@ -10,6 +10,11 @@ CricketWorld::Application.routes.draw do
   resources :matches do
     member do
       get :upload_lineup
+      patch :save_lineup
+      get :upload_toss
+      patch :save_toss
+      get :upload_inning
+      patch :save_inning
     end
   end
 

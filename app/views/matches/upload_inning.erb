@@ -1,0 +1,12 @@
+<div class="padit">
+	<%= nested_form_for(@match, url: {action: "save_inning"}) do |f| %>
+		<%= f.fields_for :match_result do |match_player| %>
+			<h4 class="sub_head">Toss Winner</h4>		
+			<%= match_player.collection_select(:toss_winner_team_id, [@match.home_team, @match.away_team], :id, :name) %>
+			<br /><br />
+			<h4 class="sub_head">Choice</h4>		
+			<%= match_player.select(:toss_choice, MatchResult::TOSS_CHOICES) %>
+		<% end %>
+		<%= f.submit %>
+	<% end %>
+</div>

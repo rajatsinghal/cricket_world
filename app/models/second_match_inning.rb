@@ -1,0 +1,3 @@
+class SecondMatchInning < MatchPlayer
+  
+end
