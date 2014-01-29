@@ -33,7 +33,7 @@ class MatchesController < ApplicationController
   
   def upload_inning
     @match = Match.find(params[:id])
-    @match.build_first_match_inning    
+    @match.create_first_inning    
   end
   
   def save_inning
@@ -43,6 +43,6 @@ class MatchesController < ApplicationController
   private
   
   def match_params
-    params.require(:match).permit(:home_team_id, :away_team_id, team_a_match_players_attributes:[:player_id], team_b_match_players_attributes:[:player_id], match_result_attributes:[:toss_winner_team_id, :toss_choice])
+    params.require(:match).permit(:home_team_id, :away_team_id, team_a_match_players_attributes:[:player_id, :team_id], team_b_match_players_attributes:[:player_id, :team_id], match_result_attributes:[:toss_winner_team_id, :toss_choice])
   end
 end

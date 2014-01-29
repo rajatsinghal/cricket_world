@@ -1,3 +1,3 @@
-class SecondMatchInning < MatchPlayer
+class SecondMatchInning < MatchInning
   
 end

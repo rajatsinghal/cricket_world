@@ -1,3 +1,3 @@
-class FirstMatchInning < MatchPlayer
+class FirstMatchInning < MatchInning
   
 end

@@ -1,12 +1,30 @@
 <div class="padit">
-	<%= nested_form_for(@match, url: {action: "save_inning"}) do |f| %>
-		<%= f.fields_for :match_result do |match_player| %>
-			<h4 class="sub_head">Toss Winner</h4>		
-			<%= match_player.collection_select(:toss_winner_team_id, [@match.home_team, @match.away_team], :id, :name) %>
-			<br /><br />
-			<h4 class="sub_head">Choice</h4>		
-			<%= match_player.select(:toss_choice, MatchResult::TOSS_CHOICES) %>
-		<% end %>
-		<%= f.submit %>
+	<h1>Inning 1</h1>
+	
+	<%= nested_form_for(@match, url: {action: "save_lineup"}) do |f| %>
+		<h4 class="sub_head">Batting</h4>
+		<table>
+			<tr>
+				<th>Position</th>
+				<th>Batsman</th>
+				<th>&nbsp;</th>
+				<th>Runs</th>
+				<th>Balls</th>
+				<th>Fours</th>
+				<th>Sixes</th>
+			</tr>
+			<%= f.fields_for :match_performances, @match.first_batting_performances do |batting_performance| %>
+				<tr>
+					<%= batting_performance.hidden_field(:player_id, :value =>@match.home_team_id) %>
+					<td><%= batting_performance.text_field(:batting_position, :value=>1, :class=>'scorecard_field position') %></td>
+					<td><%= batting_performance.object.player.name %></td>
+					<td><%= batting_performance.text_field(:mode_of_dismissal, :class=>'scorecard_field') %></td>
+					<td><%= batting_performance.text_field(:runs_scored, :class=>'scorecard_field') %></td>
+					<td><%= batting_performance.text_field(:balls_faced, :class=>'scorecard_field') %></td>
+					<td><%= batting_performance.text_field(:fours, :class=>'scorecard_field') %></td>
+					<td><%= batting_performance.text_field(:sixes, :class=>'scorecard_field') %></td>
+				</tr>
+			<% end %>
+		</table>
 	<% end %>
 </div>
