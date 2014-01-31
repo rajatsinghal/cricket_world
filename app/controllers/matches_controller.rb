@@ -40,6 +40,7 @@ class MatchesController < ApplicationController
     match = Match.find(params[:id])
     match.attributes = match_params
     match.save
+    redirect_to upload_inning_match_path(match), :flash => { :success => "Innings data saved!" }
   end
   
   private
