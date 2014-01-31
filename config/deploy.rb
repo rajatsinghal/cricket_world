@@ -1,8 +1,7 @@
 set :application, 'cricket_world'
 set :repo_url, 'git@github.com:rajatsinghal/cricket_world.git'
 set :rvm_ruby_version, '2.0.0'      # Defaults to: 'default'
-set :rvm_type, :user   
-set :default_environment, { 'PATH' => '$HOME/.rvm/bin/:$PATH' }
+set :rvm_type, :user
 
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
@@ -46,9 +45,6 @@ namespace :deploy do
     on roles(:app) do
       execute "cd #{release_path} && bundle exec rake assets:precompile RAILS_ENV=#{fetch(:stage)}"    
       execute "cd #{release_path} && cp app/assets/*.* public/assets/"
-      execute "cd #{release_path} && mkdir public/javascripts"
-      execute "cd #{release_path} && cp app/assets/javascripts/jquery.fancybox.pack.js public/javascripts/"
-      execute "cd #{release_path} && cp app/assets/javascripts/jquery.fancybox-thumbs.js public/javascripts/"
     end
   end
 
