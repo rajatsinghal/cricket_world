@@ -2,7 +2,7 @@
 	<h1>Inning 1</h1>
 	
 	<%= nested_form_for(@match, url: {action: "save_inning"}) do |f| %>
-		<h4 class="sub_head">Batting</h4>
+		<h4 class="sub_head"><%= @match.first_batting_team.name %> Batting</h4>
 		<table>
 			<tr>
 				<th>Position</th>
@@ -16,6 +16,7 @@
 			<%= f.fields_for :match_performances, @match.first_batting_performances do |batting_performance| %>
 				<tr>
 					<%= batting_performance.hidden_field(:player_id) %>
+					<%= batting_performance.hidden_field(:team_id) %>
 					<td><%= batting_performance.text_field(:batting_position, :value=>1, :class=>'scorecard_field position') %></td>
 					<td><%= batting_performance.object.player.name %></td>
 					<td><%= batting_performance.text_field(:mode_of_dismissal, :class=>'scorecard_field') %></td>
@@ -39,6 +40,7 @@
 			<%= f.fields_for :match_performances, @match.second_batting_performances do |bowling_performance| %>
 				<tr>
 					<%= bowling_performance.hidden_field(:player_id) %>
+					<%= bowling_performance.hidden_field(:team_id) %>
 					<td><%= bowling_performance.text_field(:bowling_position, :value=>1, :class=>'scorecard_field position') %></td>
 					<td><%= bowling_performance.object.player.name %></td>
 					<td><%= bowling_performance.text_field(:balls_bowled, :class=>'scorecard_field') %></td>

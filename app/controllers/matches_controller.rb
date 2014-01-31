@@ -33,12 +33,12 @@ class MatchesController < ApplicationController
   
   def upload_inning
     @match = Match.find(params[:id])
-    @match.create_innings    
+    @match.create_innings
   end
   
   def save_inning
     match = Match.find(params[:id])
-    match.update_attributes(match_params)
+    match.attributes = match_params
     match.save
   end
   
@@ -50,7 +50,7 @@ class MatchesController < ApplicationController
       team_a_match_players_attributes:[:player_id, :team_id], 
       team_b_match_players_attributes:[:player_id, :team_id], 
       match_result_attributes:[:toss_winner_team_id, :toss_choice],
-      match_performances_attributes:[:player_id, :batting_position, :runs_scored, :balls_faced, :fours, :sixes, :mode_of_dismissal, :bowling_position, :balls_bowled, :runs_conceded, :wickets]
+      match_performances_attributes:[:id, :player_id, :team_id, :batting_position, :runs_scored, :balls_faced, :fours, :sixes, :mode_of_dismissal, :bowling_position, :balls_bowled, :runs_conceded, :wickets]
     )
   end
 end
