@@ -938,11 +938,10 @@ ul{ margin:10px 0 0;}
   top: 0;
   z-index: 10000;
   }
-.navbar-inner{ border-radius:0px !important; .gradient(#222, #444, #222) }
+.navbar-inner{ border:none; .gradient(#222, #444, #222) }
 
 
-
-.navbar .nav > li > a{ padding:11px 6px;}
+.navbar .nav > li > a{ padding:11px 6px; text-shadow: none; }
 .orange-bar{
 .dropdown-menu{.border-radius(0,4px,4px,0);padding-left:2px; background:#333; .drop-shadow(3px, 2px, 6px, 0.5); border-top:2px solid @orange}
 .dropdown-menu > li > a{ color:#EEE;font-size:15px; margin-right:0px;}
@@ -985,6 +984,7 @@ a.training{background-image:url("/assets/top_training.png");}
 a.youth{background-image:url("/assets/top_youth.png");}
 a.finances{background-image:url("/assets/top_finances.png");}
 a.stadium{background-image:url("/assets/top_stadium.png");margin-right:0px;}
+a.top_profile{background-image:url("/assets/top_proflie.png");}
 
 a.league:hover{background-image:url("/assets/top_league_1.png");}
 a.team:hover{background-image:url("/assets/top_team_1.png");}
@@ -994,6 +994,7 @@ a.training:hover{background-image:url("/assets/top_training_1.png");}
 a.youth:hover{background-image:url("/assets/top_youth_1.png");}
 a.finances:hover{background-image:url("/assets/top_finances_1.png");}
 a.stadium:hover{background-image:url("/assets/top_stadium_1.png"); }
+a.top_profile.active, a.top_profile:hover{background-image:url("/assets/top_proflie_1.png");}
 
 a span{display:block; padding:2px 0; color:#222;}
 a:hover span{background:#de8000; color:#FFF;}

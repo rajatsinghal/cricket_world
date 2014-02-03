@@ -17,6 +17,9 @@ CricketWorld::Application.routes.draw do
       patch :save_inning
     end
   end
+  
+  resources :leagues do
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

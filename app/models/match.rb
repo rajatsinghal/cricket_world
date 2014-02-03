@@ -11,6 +11,7 @@ class Match < ActiveRecord::Base
   has_many :match_players, :dependent => :delete_all
   has_many :match_performances, :dependent => :delete_all
   
+  #sti
   has_many :team_a_match_players
   has_many :team_b_match_players
   has_one :first_match_inning
