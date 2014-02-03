@@ -53,6 +53,7 @@ gem 'devise', '~> 3.2'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'jquery-ui-rails'
 gem 'quiet_assets'
+gem "just-datetime-picker"
 
 group :development do
   gem 'quiet_assets'

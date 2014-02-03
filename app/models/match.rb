@@ -17,6 +17,7 @@ class Match < ActiveRecord::Base
   validates_presence_of :home_team_id, :away_team_id
   accepts_nested_attributes_for :match_result, :team_a_match_players, :team_b_match_players, :first_match_inning, :second_match_inning, :match_performances
   before_save :default_status
+  just_define_datetime_picker :start_time
   
   def default_status
     self.status = STATUS_INITIALIZED
