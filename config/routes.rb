@@ -6,7 +6,8 @@ CricketWorld::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'matches#index'
+  root 'leagues#show', :id=>1
+  
   resources :matches do
     member do
       get :upload_lineup

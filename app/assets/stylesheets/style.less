@@ -938,6 +938,9 @@ ul{ margin:10px 0 0;}
   top: 0;
   z-index: 10000;
   }
+.navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle {
+	background-color: none;
+}
 .navbar-inner{ border:none; .gradient(#222, #444, #222) }
 
 
@@ -946,6 +949,7 @@ ul{ margin:10px 0 0;}
 .dropdown-menu{.border-radius(0,4px,4px,0);padding-left:2px; background:#333; .drop-shadow(3px, 2px, 6px, 0.5); border-top:2px solid @orange}
 .dropdown-menu > li > a{ color:#EEE;font-size:15px; margin-right:0px;}
 .dropdown-menu > li > a:hover{background:#000; color:@orange; .transition-duration(0.9s)}
+
 	
 	margin:auto; 
 .landing_large a{font-size:18px !important;padding:11px 10px 11px !important;}

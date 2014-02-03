@@ -1,0 +1,53 @@
+<div class="league_header2"><h1><%= @league.name; %></span></h1></div>
+
+<div class="league_infobar clearfix">
+	<div class="all_records">
+		<ul>
+			<li><%= link_to("Most Runs", ''); %><%= image_tag('small_black_star.png') %></li>
+			<li><%= link_to("Best Batting Average", ''); %><%= image_tag('small_black_star.png') %></li>
+			<li><%= link_to("Highest Score", ''); %><%= image_tag('small_black_star.png') %></li>
+			<li><%= link_to("Most Wickets", ''); %><%= image_tag('small_black_star.png') %></li>
+			<li><%= link_to("Best Bowling Average", ''); %><%= image_tag('small_black_star.png') %></li>
+			<li><%= link_to("Best Bowling Figures", ''); %><%= image_tag('small_black_star.png') %></li>
+			<li><%= link_to("Best Economy", ''); %></li>
+		</ul>
+	</div>
+</div>
+<br clear="all" />
+
+<div class="padit">
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="span7">
+				<table class="table table-striped league_table">
+					<thead>
+						<tr>
+							<th align="left" width="10">#</th>
+							<th align="left">Team</th>
+							<th style="text-align:center">Played</th>
+							<th style="text-align:center">Points</th>
+							<th style="text-align:center">Wins</th>
+							<th style="text-align:center">Loss</th>
+							<th style="text-align:center">Ties</th>
+							<th style="text-align:center">Net R.R.</th>
+						</tr>   
+					</thead>     
+
+					<% @league.league_statuses.each do |league_status| %>
+					<tr>
+						<td><%= league_status.position; %></td>
+						<td><%= league_status.team.name; %></td>
+						<td style="text-align:center"><%= league_status.matches_played; %></td>
+						<td style="text-align:center"><%= league_status.points; %></td>
+						<td style="text-align:center"><%= league_status.wins; %></td>
+						<td style="text-align:center"><%= league_status.losses; %></td>
+						<td style="text-align:center"><%= league_status.ties; %></td>
+						<td style="text-align:center"><%= league_status.run_rate; %></td>
+					</tr>
+					<% end %>
+				</table>
+			</div>
+			<br clear="all" />
+		</div> <!--end span11 -->
+	</div>
+</div>
