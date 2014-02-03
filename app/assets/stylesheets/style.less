@@ -1298,15 +1298,15 @@ section.team_head{ background:#ffcc66;
 
 .bot_mssg{ font-size:13px; color:#EEE; display:block; margin:10px 10px;}
 
-.team_info{ background:#FFF; .box-shadow(0px 5px 8px #999);
-padding:0px; display:inline-block; margin:30px 0 25px 15px;
+.team_info{ width: 820px; min-height: 125px;
+padding:0px; display:inline-block; margin:30px 0 5px 15px;
 
 .team_icons{ list-style:none;  margin:20px 5px 25px 20px; 
 
 
 li{ display:inline-block; width:90px; height:70px; margin-right:20px; background-repeat:no-repeat;
 .inner-shadow(0, 3, 4, 0.9);
-span{ display:block; margin-top:40px; text-align:center; font-size:24px; color:#FFF;font-family: 'LeagueGothicRegular', @helvetica;}
+span{ display:block; margin-top:43px; text-align:center; font-size:24px; color:#FFF;font-family: 'LeagueGothicRegular', @helvetica;}
 }}
 
 .team_icons li span{letter-spacing:1px;}
@@ -1317,12 +1317,11 @@ span{ display:block; margin-top:40px; text-align:center; font-size:24px; color:#
 .team_icons li.winning_streak{background: url("/assets/team_icons.png") no-repeat -180px 0px;}
 .team_icons li.global_rank{background: url("/assets/team_icons.png") no-repeat -270px 0px;}
 
-.manager_info{ line-height:25px;color:#777; background:#222;
-
-	.username{ font-size:16px; color:#FFF; font-weight:bold; display:inline-block; padding:5px 0 0 22px; }
-	.manager_rep{font-family: @helvetica; font-weight:bold; font-size:16px; display:inline-block; padding:0px 0 8px 22px; float:left}
-	.stars{margin:-10px 10px 0 0; text-align:left; float:right; width:190px; }
-	
+.manager_info{ padding:20px; line-height:25px;color:#777; 
+	.username{ font-size:1.2em; color:#FFF; font-weight:bold; display:inline-block; width:55%; padding:5px 0 0 22px;}
+	.manager_rep{font-family: @helvetica; font-weight:bold; display:inline-block; font-size:18px; display:inline-block; width:55%; padding:0px 0 8px 22px;}
+	.stars{margin:22px 10px 0 0; float:right; text-align:left; width:150px; }
+	.red_stars{}
 	}
 }
 
@@ -1341,12 +1340,16 @@ float:right;margin:-65px 20px 0 0;
 #update_club_logo{ padding:7px; background:#FC0; display:block; margin:150px 0 0;}
 
 .team_extra_info{
-	background:#FFF; padding:15px 10px 10px 25px;
+	background:#FFF; padding:20px 0px 15px 35px;
 	.team_share{ float:right; IMG{ margin-right:20px;}}
-	ul{ margin:0px; float:left;
-		li{ display:inline-block; font-size:13px; color:#777; text-align:center; min-width:140px; margin-right:20px; margin-bottom:10px;
-		span{ border-bottom:2px solid #777; color:#555;font-family: 'LeagueGothicRegular', @helvetica; display:block; margin-bottom:2px; font-size:26px; }}}
+	ul{ 
+		margin:0px; float:left;
+		li{ 
+			display:inline-block; font-size:13px; color:#777; text-align:center; min-width:140px; margin-right:20px;
+			span{ border-bottom:2px solid #777; color:#555;font-family: 'LeagueGothicRegular', @helvetica; display:block; margin-bottom:2px; padding-bottom:8px; font-size:26px; }
+		}
 	}
+}
 
 ul.transfer_stats{ margin:5px auto 25px 10px; float:left;
 		li{ background:#f9e454; color:#333;.rounded(7px); display:inline-block; font-size:13px; color:#777; text-align:center; min-width:120px; margin-right:15px; padding:15px 5px 10px;.drop-shadow(0, 1px, 2px, 0.2); margin-bottom: 10px;

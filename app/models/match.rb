@@ -83,6 +83,14 @@ class Match < ActiveRecord::Base
     end
   end
   
+  def home_team_inning
+    match_innings.filter_team(home_team_id).first
+  end
+  
+  def away_team_inning
+    match_innings.filter_team(away_team_id).first
+  end
+  
   def get_opponent_team_id(team_id)
     if(home_team_id == team_id)
       return away_team_id
@@ -91,5 +99,14 @@ class Match < ActiveRecord::Base
     end
   end
   
+  def get_title
+    if home_team_inning && away_team_inning
+		  return "#{home_team.name} <span class='result_score'>#{home_team_inning.runs}/#{home_team_inning.wickets} <span>#{home_team_inning.overs}</span></span> v #{away_team.name} <span class='result_score'>#{away_team_inning.runs}/#{away_team_inning.wickets} <span>#{away_team_inning.overs}</span></span>";
+		else
+		  return "#{home_team.name} v #{away_team.name}";
+		end
+  end
+  
   scope :initialized, lambda { where(:status => STATUS_INITIALIZED) }
+  scope :played_by_team, lambda { |team_id| where("home_team_id = #{team_id} or away_team_id = #{team_id}") }
 end

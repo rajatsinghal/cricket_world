@@ -1,0 +1,60 @@
+<div class="padit">
+	<%= render :partial=>'navigation', :locals=>{:team=>@team}; %>
+
+	<div class="card m10">
+		<%= render :partial=>'banner', :locals=>{:team=>@team}; %>
+
+		<div class="card_puff">	
+			<section class="team_theme">
+				<div class="team_logo"><%= image_tag('team_logo.jpg', :style=>'width:200px; height:200px') %></div><br />
+			</section>
+			<section class="team_info">
+				<div class="manager_info clearfix"><div class="m10"><%= @team.description; %></div></div>
+			</section>
+		</div><!--end card_puff -->
+
+		<section class="team_extra_info">
+			<ul class="clearfix">
+				<li>
+					<span>WWLWLW</span>Winning Streak
+				</li>
+				<li>
+					<span><%= @team.top_run_scorer ? link_to(@team.top_run_scorer.name, player_path(@team.top_run_scorer)) : '-'; %></span>
+					Top Run Scorer
+				</li>
+				<li>
+					<span><%= @team.top_wicket_taker ? link_to(@team.top_wicket_taker.name, player_path(@team.top_wicket_taker)) : '-'; %></span>
+					Top Wicket Taker
+				</li>
+				<li>
+					<span><%= @team.captain ? link_to(@team.captain.name, player_path(@team.captain)) : '-'; %></span>
+					Captain
+				</li>
+			</ul>
+			<div class="team_share">
+				<%= link_to image_tag('fb-share-button.png'), '' %>
+			</div>
+			<br clear="all" />
+		</section>
+	</div><!--end card -->
+	<br /><br clear="all" />
+
+	<div class="span7">
+		<div class="team_tab">
+			<ul class="nav nav-tabs" id="tab_this">
+				<li class="active"><a href="#recent_matches" data-toggle="tab">Matches</a></li>
+			</ul>
+		</div>
+		<div class="tab-content team_tab_content">
+			<div class="tab-pane active" id="recent_matches" data-fetched="0">
+				<%= render :partial=>"recent_matches", :locals=>{:team=>@team}; %>
+			</div>
+		</div>        
+		<br clear="all" />    
+	</div>
+	
+	<div class="span4 fr">
+		<%= render :partial=>"press_release"; %>
+	</div>
+	<br clear="all" /> 
+</div>

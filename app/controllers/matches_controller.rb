@@ -6,6 +6,9 @@ class MatchesController < ApplicationController
     @matches = Match.initialized.all
   end
   
+  def show
+  end
+  
   def upload_lineup
     @match = Match.find(params[:id])
     11.times { @match.team_a_match_players.build }
