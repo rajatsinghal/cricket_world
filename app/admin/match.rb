@@ -1,4 +1,7 @@
 ActiveAdmin.register Match do
+  
+  actions :all, except: [:show]
+  
   permit_params :home_team_id, :away_team_id, :start_time, :stadium_name, :start_time_date, :start_time_time_hour, :start_time_time_minute
   
   form do |f|

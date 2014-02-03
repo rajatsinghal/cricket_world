@@ -1,6 +1,8 @@
 ActiveAdmin.register League do
   
   menu :label=>"All Leagues"
+  
+  actions :all, except: [:show]
 
   permit_params :name, :description, league_statuses_attributes: [:id, :team_id, :_destroy]
 

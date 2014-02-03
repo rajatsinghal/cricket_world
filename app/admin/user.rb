@@ -1,5 +1,7 @@
 ActiveAdmin.register User do
   
+  actions :all, except: [:show]
+  
   permit_params :name, :email, :phone_number, :password, :password_confirmation, :temporary_password, players_attributes: [:id, :team_id, :_destroy], team_managers_attributes: [:id, :team_id, :_destroy]
   
   form do |f|
@@ -21,21 +23,6 @@ ActiveAdmin.register User do
       end
     end
     f.actions
-  end
-  
-  show do |user|
-    attributes_table do
-      row :id
-      row :name
-      row :email
-      row :phone_number
-      row :players do 
-        user.players.map {|c| c.team.name}.join(', ')
-      end
-      row :team_managers do 
-        user.team_managers.map {|c| c.team.name}.join(', ')
-      end
-    end
   end
   
   index do 
