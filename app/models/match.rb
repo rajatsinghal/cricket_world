@@ -29,15 +29,15 @@ class Match < ActiveRecord::Base
     if(!self.first_match_inning)
       self.build_first_match_inning({:team_id=>match_result.first_batting_team_id, :number=>1})
       self.first_match_inning.save
-      match_players.filter_team(match_result.first_batting_team_id).each do |match_player|
-        self.match_performances.create({:team_id=>match_result.first_batting_team_id, :player_id=>match_player.player_id})
+      first_batting_players.each_with_index do |match_player, index|
+        self.match_performances.create({:team_id=>match_result.first_batting_team_id, :batting_position=>(index+1), :bowling_position=>(index+1)})
       end
     end
     if(!self.second_match_inning)
-      self.build_second_match_inning({:team_id=>match_result.second_batting_team_id, :number=>1})
+      self.build_second_match_inning({:team_id=>match_result.second_batting_team_id, :number=>2})
       self.second_match_inning.save
-      match_players.filter_team(match_result.second_batting_team_id).each do |match_player|
-        self.match_performances.create({:team_id=>match_result.second_batting_team_id, :player_id=>match_player.player_id})
+      second_batting_players.each_with_index do |match_player, index|
+        self.match_performances.create({:team_id=>match_result.second_batting_team_id, :batting_position=>(index+1), :bowling_position=>(index+1)})
       end
     end
   end
@@ -61,6 +61,22 @@ class Match < ActiveRecord::Base
   def second_batting_performances
     if(match_result.second_batting_team_id)
       return self.match_performances.filter_team(match_result.second_batting_team_id)
+    else
+      return NULL
+    end
+  end
+  
+  def first_batting_players
+    if(match_result.first_batting_team_id)
+      return self.match_players.filter_team(match_result.first_batting_team_id)
+    else
+      return NULL
+    end
+  end
+  
+  def second_batting_players
+    if(match_result.first_batting_team_id)
+      return self.match_players.filter_team(match_result.second_batting_team_id)
     else
       return NULL
     end
