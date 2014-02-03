@@ -6,15 +6,16 @@ class Match < ActiveRecord::Base
   
   belongs_to :home_team, :class_name=>'Team', :foreign_key=>'home_team_id'
   belongs_to :away_team, :class_name=>'Team', :foreign_key=>'away_team_id'
-  has_one :match_result
-  has_many :match_innings
-  has_many :match_players
+  has_one :match_result, :dependent => :delete
+  has_many :match_innings, :dependent => :delete_all
+  has_many :match_players, :dependent => :delete_all
+  has_many :match_performances, :dependent => :delete_all
+  
   has_many :team_a_match_players
   has_many :team_b_match_players
   has_one :first_match_inning
   has_one :second_match_inning
-  has_many :match_performances
-  
+    
   validates_presence_of :home_team_id, :away_team_id
   accepts_nested_attributes_for :match_result, :team_a_match_players, :team_b_match_players, :first_match_inning, :second_match_inning, :match_performances
   before_save :default_status

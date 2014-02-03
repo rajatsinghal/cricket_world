@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   validates_presence_of :name, :email, :phone_number
   
-  has_many :players
-  has_many :team_managers
+  has_many :players, :dependent => :delete_all
+  has_many :team_managers, :dependent => :delete_all
   
   accepts_nested_attributes_for :players, :allow_destroy => true
   accepts_nested_attributes_for :team_managers, :allow_destroy => true
