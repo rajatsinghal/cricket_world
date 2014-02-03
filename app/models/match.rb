@@ -2,6 +2,7 @@ class Match < ActiveRecord::Base
   
   STATUS_INITIALIZED = 1;
   STATUS_SCORED_ENTERED = 2;
+  STATUSES = { self::STATUS_INITIALIZED => 'Pending',  self::STATUS_SCORED_ENTERED => 'Score Updated' }
   
   belongs_to :home_team, :class_name=>'Team', :foreign_key=>'home_team_id'
   belongs_to :away_team, :class_name=>'Team', :foreign_key=>'away_team_id'

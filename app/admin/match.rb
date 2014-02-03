@@ -10,4 +10,16 @@ ActiveAdmin.register Match do
     end
     f.actions
   end
+  
+  index do
+    column :id
+    column 'Team A', :home_team
+    column 'Team B', :away_team
+    column :start_time
+    column :stadium_name
+    column :status do |match|
+      Match::STATUSES[match.status]
+    end
+    actions
+  end
 end
