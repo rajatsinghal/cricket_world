@@ -28,12 +28,12 @@ ActiveAdmin.register LeagueStatus, :as => "League Position" do
     f.inputs do
       f.input :league, :input_html => { :disabled => true } 
       f.input :team, :input_html => { :disabled => true } 
-      f.input :matches_played
-      f.input :position
-      f.input :wins
-      f.input :losses
-      f.input :ties
-      f.input :points
+      f.input :matches_played, :as=>:select, :collection => 0..30
+      f.input :position, :as=>:select, :collection => 0..30
+      f.input :wins, :as=>:select, :collection => 0..30
+      f.input :losses, :as=>:select, :collection => 0..30
+      f.input :ties, :as=>:select, :collection => 0..30
+      f.input :points, :as=>:select, :collection => 0..30
       f.input :run_rate
     end
     f.actions
