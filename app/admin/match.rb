@@ -23,6 +23,8 @@ ActiveAdmin.register Match do
     column :status do |match|
       Match::STATUSES[match.status]
     end
-    actions
+    actions do |match|
+      link_to "Update Scores", upload_lineup_match_path(match), target: "_blank"
+    end
   end
 end
