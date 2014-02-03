@@ -1,6 +1,8 @@
-ActiveAdmin.register LeagueStatus do
+ActiveAdmin.register LeagueStatus, :as => "League Position" do
   
   menu false
+  
+  permit_params :league_id, :team_id, :matches_played, :position, :wins, :losses, :ties, :points, :run_rate
   
   index do 
       column :id 
