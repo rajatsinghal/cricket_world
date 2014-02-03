@@ -1,3 +1,4 @@
+<%= render :partial => 'header' %>
 <div class="padit">
 	<%= nested_form_for(@match, url: {action: "save_lineup"}) do |f| %>
 		<h4 class="sub_head"><%= @match.home_team.name %> Squad</h4>

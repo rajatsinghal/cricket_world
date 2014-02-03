@@ -1,3 +1,4 @@
+<%= render :partial => 'header' %>
 <div class="padit">
 	<%= nested_form_for(@match, url: {action: "save_toss"}) do |f| %>
 		<%= f.fields_for :match_result do |match_player| %>
