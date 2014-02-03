@@ -43,10 +43,10 @@ ActiveAdmin.register User do
     column :name
     column :email    
     column :phone_number 
-    column :players do |user|
+    column 'Plays for', :players do |user|
       user.players.map {|c| c.team.name}.join(', ')
     end   
-    column :team_managers do |user|
+    column 'Manages', :team_managers do |user|
       user.team_managers.map {|c| c.team.name}.join(', ')
     end
     actions

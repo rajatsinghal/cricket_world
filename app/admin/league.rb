@@ -16,6 +16,7 @@ ActiveAdmin.register League do
   end
   
   index do
+    column :id
     column :name
     column :description
     actions do |league|

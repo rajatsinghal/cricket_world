@@ -5,4 +5,12 @@ ActiveAdmin.register Team do
   end
   collection_action :create_teams do    
   end
+  
+  index do
+    column :id
+    column :name
+    column :description
+    actions
+  end
+  
 end
