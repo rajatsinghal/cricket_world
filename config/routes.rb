@@ -19,8 +19,8 @@ CricketWorld::Application.routes.draw do
     end
   end
   
-  resources :leagues do
-  end
+  resources :leagues
+  resources :teams
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

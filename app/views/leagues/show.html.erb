@@ -36,7 +36,7 @@
 					<% @league.league_statuses.each do |league_status| %>
 					<tr>
 						<td><%= league_status.position; %></td>
-						<td><%= league_status.team.name; %></td>
+						<td><%= link_to league_status.team.name, team_path(league_status.team); %></td>
 						<td style="text-align:center"><%= league_status.matches_played; %></td>
 						<td style="text-align:center"><%= league_status.points; %></td>
 						<td style="text-align:center"><%= league_status.wins; %></td>
