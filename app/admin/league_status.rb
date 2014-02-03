@@ -1,4 +1,7 @@
 ActiveAdmin.register LeagueStatus do
+  
+  menu false
+  
   index do 
       column :id 
       column :league_id do |order|
@@ -14,6 +17,6 @@ ActiveAdmin.register LeagueStatus do
       column :ties
       column :points
       column :run_rate
-      column :created_at
+      actions
   end
 end

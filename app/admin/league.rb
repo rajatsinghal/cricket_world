@@ -14,4 +14,13 @@ ActiveAdmin.register League do
     end
     f.actions
   end
+  
+  index do
+    column :name
+    column :description
+    actions do |league|
+      link_to "Update Positions", :controller => "league_statuses", :action => "index", 'q[league_id_eq]' => "#{league.id}".html_safe
+    end
+  end
+  
 end
