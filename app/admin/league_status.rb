@@ -1,6 +1,7 @@
 ActiveAdmin.register LeagueStatus, :as => "League Position" do
   
   menu false
+  config.sort_order = "points_desc"
   
   permit_params :league_id, :team_id, :matches_played, :position, :wins, :losses, :ties, :points, :run_rate
   
