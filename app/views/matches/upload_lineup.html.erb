@@ -5,17 +5,31 @@
 		<div class="span12">
 			<div class="span5">
 				<h4 class="sub_head"><%= @match.home_team.name %> Squad</h4>
+				<% players = Player.filter_team(@match.home_team_id) %>
+				<% i = 0 %>
 				<%= f.fields_for :team_a_match_players do |match_player| %>
 					<%= match_player.hidden_field(:team_id, :value =>@match.home_team_id) %>
-					<%= match_player.collection_select(:player_id, Player.filter_team(@match.home_team_id), :id, :name) %>
+					<% if !match_player.object.player_id.blank? %>
+						<%= match_player.collection_select(:player_id, players, :id, :name,) %>
+					<% else %>
+						<%= match_player.collection_select(:player_id, players, :id, :name, :selected =>players[i].id) %>
+					<% end %>
+					<% i = i + 1 %>
 				<% end %>
 			</div>
 
 			<div class="span5">		
 				<h4 class="sub_head"><%= @match.away_team.name %> Squad</h4>
+				<% players = Player.filter_team(@match.away_team_id) %>
+				<% i = 0 %>
 				<%= f.fields_for :team_b_match_players do |match_player| %>
 					<%= match_player.hidden_field(:team_id, :value =>@match.away_team_id) %>
-					<%= match_player.collection_select(:player_id, Player.filter_team(@match.away_team_id), :id, :name) %>
+					<% if !match_player.object.player_id.blank? %>
+						<%= match_player.collection_select(:player_id, players, :id, :name,) %>
+					<% else %>
+						<%= match_player.collection_select(:player_id, players, :id, :name, :selected =>players[i].id) %>
+					<% end %>
+					<% i = i + 1 %>
 				<% end %>
 			</div>
 			<br clear="all" />

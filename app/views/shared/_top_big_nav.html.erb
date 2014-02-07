@@ -7,7 +7,7 @@
 			<div class="span9">
 				<nav>
 					<ul class="top_nav">
-						<li class=""><%= link_to(League.find(1).name, league_path(1), :class=>"league"); %></li>
+						<li class=""><%= link_to('League I', league_path(1), :class=>"league"); %></li>
 						<li class=""><%= link_to(Team.find(1).name, team_path(1), :class=>"team"); %></li>
 						<li class=""><%= link_to('Players', players_team_path(1), :class=>"players"); %></li>
 						<li class=""><%= link_to('Matches', matches_team_path(1), :class=>"matches"); %></li>
