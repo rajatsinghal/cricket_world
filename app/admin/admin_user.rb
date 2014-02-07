@@ -20,4 +20,12 @@ ActiveAdmin.register AdminUser do
     f.actions
   end
 
+  controller do
+    def update
+      update! do |format|
+        format.html { redirect_to admin_teams_path, :notice => "Teams added successfully" }
+      end
+    end
+  end
+
 end

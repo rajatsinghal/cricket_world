@@ -7,12 +7,17 @@ class MatchesController < ApplicationController
   end
   
   def show
+    @match = Match.find(params[:id])
   end
   
   def upload_lineup
     @match = Match.find(params[:id])
-    11.times { @match.team_a_match_players.build }
-    11.times { @match.team_b_match_players.build }
+    if @match.team_a_match_players.length < 11
+      11.times { @match.team_a_match_players.build }
+    end
+    if @match.team_b_match_players.length < 11
+      11.times { @match.team_b_match_players.build }
+    end
   end
   
   def save_lineup    
@@ -31,19 +36,40 @@ class MatchesController < ApplicationController
     match = Match.find(params[:id])
     match.update_attributes(match_params)
     match.save
-    redirect_to upload_inning_match_path(match)
+    redirect_to upload_inning_match_path(match, {:number=>1})
   end
   
   def upload_inning
     @match = Match.find(params[:id])
     @match.create_innings
+    if params[:number].to_i == 1
+      @innings = @match.match_innings.where("number = #{params[:number]}").first
+      @team = @match.first_batting_team
+      @bowling_team = @match.second_batting_team
+      @batting_performances = @match.first_batting_performances
+      @bowling_performances = @match.second_batting_performances
+      @url = save_inning_match_path(@match, {:number =>2})
+    else
+      @innings = @match.match_innings.where("number = #{params[:number]}").first
+      @team = @match.second_batting_team
+      @bowling_team = @match.first_batting_team
+      @batting_performances = @match.second_batting_performances
+      @bowling_performances = @match.first_batting_performances
+      @url = save_inning_match_path(@match)
+    end
+
   end
   
   def save_inning
     match = Match.find(params[:id])
     match.attributes = match_params
     match.save
-    redirect_to upload_inning_match_path(match), :flash => { :success => "Innings data saved!" }
+    flash[:success] = "Innings data saved!"
+    if params.has_key?("number")
+      redirect_to upload_inning_match_path(match, {:number=>2})
+    else
+      redirect_to upload_inning_match_path(match, {:number=>2})
+    end
   end
   
   private

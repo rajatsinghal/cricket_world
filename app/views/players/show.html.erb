@@ -1,0 +1,41 @@
+<div class="padit">
+    <%= render :partial=>'/teams/navigation', :locals=>{:team=>@player.team} %>
+
+    <div class="card m10">
+        <%= render :partial=>'/teams/banner', :locals=>{:team=>@player.team} %>
+    </div><!--end card -->
+    <br /><br clear="all" />
+          
+    <div class="row">
+        <div class="span7">
+            <div class="all_player">
+                <h1 class="player_name p_large">
+                    <span class="player_full_name"><%= @player.name %></span>
+                </h1>
+                <div class="player_info">
+                    <div class="span1 ml0">
+                        <img src="<%= asset_path('team_logo.jpg') %>" />
+                    </div>
+                    <div class="span3"> 
+                        Age: <strong>25yrs</strong><br />
+                        Height: <strong>6 ft</strong><br />
+                        Batting Style: <strong>Right hand: Opener</strong><br />
+                        Bowling Style: <strong>Right hand: Off-break</strong>
+                    </div>
+                    <br clear="all" /><br />
+                </div>
+            </div> <!--all player -->
+            <br clear="all" />
+
+            <%= render :partial => 'matches' %>
+
+        </div><!--end col7 -->
+
+        <div class="span4">
+
+            <img style="opacity:0.6" src="<%= asset_path('player_stats_screenshot.png') %>" title="Under Construction" />
+            
+        </div> <!--end span4 -->
+        <br clear="all" />
+    </div>
+</div>

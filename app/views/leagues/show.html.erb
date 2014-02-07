@@ -3,13 +3,33 @@
 <div class="league_infobar clearfix">
 	<div class="all_records">
 		<ul>
-			<li><%= link_to("Most Runs", ''); %><%= image_tag('small_black_star.png') %></li>
-			<li><%= link_to("Best Batting Average", ''); %><%= image_tag('small_black_star.png') %></li>
-			<li><%= link_to("Highest Score", ''); %><%= image_tag('small_black_star.png') %></li>
-			<li><%= link_to("Most Wickets", ''); %><%= image_tag('small_black_star.png') %></li>
-			<li><%= link_to("Best Bowling Average", ''); %><%= image_tag('small_black_star.png') %></li>
-			<li><%= link_to("Best Bowling Figures", ''); %><%= image_tag('small_black_star.png') %></li>
-			<li><%= link_to("Best Economy", ''); %></li>
+			<li>
+				<%= link_to("Most Runs", ''); %>
+				<img src="<%= asset_path('small_black_star.png') %>" />
+			</li>
+			<li>
+				<%= link_to("Best Batting Average", ''); %>
+				<img src="<%= asset_path('small_black_star.png') %>" />
+			</li>
+			<li>
+				<%= link_to("Highest Score", ''); %>
+				<img src="<%= asset_path('small_black_star.png') %>" />
+			</li>
+			<li>
+				<%= link_to("Most Wickets", ''); %>
+				<img src="<%= asset_path('small_black_star.png') %>" />
+			</li>
+			<li>
+				<%= link_to("Best Bowling Average", ''); %>
+				<img src="<%= asset_path('small_black_star.png') %>" />
+			</li>
+			<li>
+				<%= link_to("Best Bowling Figures", ''); %>
+				<img src="<%= asset_path('small_black_star.png') %>" />
+			</li>
+			<li>
+				<%= link_to("Best Economy", ''); %>
+			</li>
 		</ul>
 	</div>
 </div>
@@ -18,7 +38,7 @@
 <div class="padit">
 	<div class="row-fluid">
 		<div class="span12">
-			<div class="span7">
+			<div class="">
 				<table class="table table-striped league_table">
 					<thead>
 						<tr>
@@ -42,12 +62,30 @@
 						<td style="text-align:center"><%= league_status.wins; %></td>
 						<td style="text-align:center"><%= league_status.losses; %></td>
 						<td style="text-align:center"><%= league_status.ties; %></td>
-						<td style="text-align:center"><%= league_status.run_rate; %></td>
+						<td style="text-align:center"><%= league_status.run_rate.blank? ? 0.00 : league_status.run_rate; %></td>
 					</tr>
 					<% end %>
 				</table>
 			</div>
-			<br clear="all" />
-		</div> <!--end span11 -->
+
+			<div class="m30">
+				<ul class="player_matches">
+				<% Match.all.each do |match| %>
+					<li class="league">
+						<span class="match_date">
+							<span class="date"><%= match.start_time.strftime('%d') %></span>
+							<span class="month"><%= match.start_time.strftime('%b') %></span>
+						</span>
+
+						<%= render :partial => '/matches/result_string', :locals => {match: match} %>
+						<br clear="all" />
+					</li>
+				<% end %>
+				</ul>
+
+			</div>
+			
+		</div> <!--end span12 -->
+		<br clear="all" />
 	</div>
 </div>

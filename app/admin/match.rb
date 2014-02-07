@@ -20,9 +20,9 @@ ActiveAdmin.register Match do
     column 'Team B', :away_team
     column :start_time
     column :stadium_name
-    column :status do |match|
-      Match::STATUSES[match.status]
-    end
+    #column :status do |match|
+    #  Match::STATUSES[match.status]
+    #end
     actions do |match|
       link_to "Update Scores", upload_lineup_match_path(match), target: "_blank"
     end

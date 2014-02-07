@@ -1,0 +1,42 @@
+<div class="padit">
+	<%= render :partial=>'navigation', :locals=>{:team=>@team} %>
+
+	<div class="card m10">
+		<%= render :partial=>'banner', :locals=>{:team=>@team} %>
+	</div><!--end card -->
+	<br /><br clear="all" />
+
+	<div id="players_list" class="m10 non_premium">
+		<div class="span9 ml0">
+			<% @team.players.each do |player| %>
+			<section class="player_condensed">
+				<h2 class="player_name p_medium"><%= link_to player.name, player %></h2>  
+
+				<div class="player_info2">
+					<div class="span1 ml0">
+						<img src="<%= asset_path('team_logo.jpg') %>" />
+					</div>
+					<div class="span3"> 
+						Age: <strong>25yrs</strong><br />
+						Height: <strong>6 ft</strong><br />
+						Batting Style: <strong>Right hand: Opener</strong><br />
+						Bowling Style: <strong>Right hand: Off-break</strong>
+					</div>	
+					<br clear="all" />
+				</div>
+			</section>
+			<% end %>
+		</div>
+
+		<div class="span2 fr">
+			<h3 class="star_head2">SQUAD</h3>
+			<ul class="players_list">
+			<% @team.players.each do |player| %>
+			  <li><%= link_to player.name, player %></li>
+			<% end %>
+			</ul>
+		</div>
+		<br clear="all" />
+	</div>
+
+</div>

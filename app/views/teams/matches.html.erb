@@ -1,0 +1,23 @@
+<div class="padit">
+<%= render :partial=>'navigation', :locals=>{:team=>@team} %>
+
+<div class="card m10">
+  <%= render :partial=>'banner', :locals=>{:team=>@team} %>
+</div>
+
+<div class="m20">
+    <span class="match_time">Matches</span>
+    <ul class="past_matches team_matches m20">
+        <% Match.all.each do |match| %>
+            <li class="completed">
+                <span class="match_date">
+                    <span class="date"><%= match.start_time.strftime('%d') %></span>
+                    <span class="month"><%= match.start_time.strftime('%b') %></span>
+                </span>
+
+                <%= render :partial => '/matches/result_string', :locals => {match: match} %>
+                <br clear="all" />
+            </li>
+        <% end %>
+    </ul>
+</div>

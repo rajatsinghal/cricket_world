@@ -1,6 +1,6 @@
 ActiveAdmin.register Team do
   
-  actions :all, except: [:show]
+  actions :all, except: [:show, :new]
   
   permit_params :name, :description
   
@@ -14,7 +14,7 @@ ActiveAdmin.register Team do
   index do
     column :id
     column :name
-    column :description
+    #column :description
     actions
   end
   

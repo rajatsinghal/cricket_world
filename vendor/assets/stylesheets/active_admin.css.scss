@@ -21,3 +21,32 @@
 .has_many_container {
 	h3 {display: none;}
 }
+
+a.button.has_many_add {
+	-moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: #BD3E3E;
+    border: none;
+    border-radius: 200px;
+    color: #FFF;
+    display: inline-block;
+    font-family: Helvetica,Arial,sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    line-height: 12px;
+    margin-right: 3px;
+    padding: 7px 16px 6px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #000000;
+    opacity:0.9;
+}
+
+a.button.has_many_add:not(.disabled):hover {
+	background: #C22F2F;
+    border: none;
+    opacity:1;
+}
+
+#league_position_run_rate { width: 70px !important;}

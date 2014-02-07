@@ -1,26 +1,28 @@
 <%= render :partial => 'header' %>
 <div class="padit">
-	<h1>Inning 1</h1>
-	
-	<%= nested_form_for(@match, url: {action: "save_inning"}) do |f| %>
-		<h4 class="sub_head"><%= @match.first_batting_team.name %> Batting</h4>
-		<table>
+	<h1>Inning <%= @innings.number %></h1>
+	<% if @innings.number.to_i == 2  %>
+		<%= link_to "Innings 1", upload_inning_match_path(@match, {:number =>1}), class: 'btn btn-info btn-medium fr' %>
+	<% end %>
+	<%= nested_form_for(@match, url: @url) do |f| %>
+		<h4 class="sub_head"><%= @team.name %>  - Batting</h4>
+		<table class="table table-striped table-hovered">
 			<tr>
 				<th>Position</th>
 				<th>Batsman</th>
-				<th>&nbsp;</th>
+				<th style="width:20%">Mode of Dismissal</th>
 				<th>Runs</th>
 				<th>Balls</th>
 				<th>Fours</th>
 				<th>Sixes</th>
 			</tr>
-			<%= f.fields_for :match_performances, @match.first_batting_performances do |batting_performance| %>
+			<%= f.fields_for :match_performances, @batting_performances do |batting_performance| %>
 				<tr>
 					<%= batting_performance.hidden_field(:batting_position) %>
 					<%= batting_performance.hidden_field(:team_id) %>
 					<td class='position'><%= batting_performance.object.batting_position %></td>
 					<td><%= batting_performance.collection_select(:player_id, @match.first_batting_players, :player_id, :player_name, :class=>'scorecard_field') %></td>
-					<td><%= batting_performance.text_field(:mode_of_dismissal, :class=>'scorecard_field') %></td>
+					<td style="width:20%"><%= batting_performance.text_field(:mode_of_dismissal) %></td>
 					<td><%= batting_performance.text_field(:runs_scored, :class=>'scorecard_field') %></td>
 					<td><%= batting_performance.text_field(:balls_faced, :class=>'scorecard_field') %></td>
 					<td><%= batting_performance.text_field(:fours, :class=>'scorecard_field') %></td>
@@ -29,15 +31,15 @@
 			<% end %>
 		</table>
 		
-		<h4 class="sub_head">Bowling</h4>
-		<table>
+		<h4 class="sub_head"><%= @bowling_team.name %> - Bowling</h4>
+		<table class="table table-striped table-hovered">
 			<tr>
 				<th>Bowler</th>
 				<th>Overs</th>
 				<th>Runs</th>
 				<th>Wickets</th>
 			</tr>
-			<%= f.fields_for :match_performances, @match.second_batting_performances do |bowling_performance| %>
+			<%= f.fields_for :match_performances, @bowling_performances do |bowling_performance| %>
 				<tr>
 					<%= bowling_performance.hidden_field(:bowling_position) %>
 					<%= bowling_performance.hidden_field(:team_id) %>
@@ -48,6 +50,6 @@
 				</tr>
 			<% end %>
 		</table>	
-		<%= f.submit %>
+		<%= f.submit "Save", class: 'btn btn-success btn-large' %>
 	<% end %>
 </div>

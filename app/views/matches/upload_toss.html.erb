@@ -8,6 +8,7 @@
 			<h4 class="sub_head">Choice</h4>		
 			<%= match_player.select(:toss_choice, MatchResult::TOSS_CHOICES) %>
 		<% end %>
-		<%= f.submit %>
+		<br />
+		<%= f.submit "Save", class: 'btn btn-success btn-large' %>
 	<% end %>
 </div>

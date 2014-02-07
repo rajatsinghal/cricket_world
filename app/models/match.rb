@@ -21,6 +21,8 @@ class Match < ActiveRecord::Base
   accepts_nested_attributes_for :match_result, :team_a_match_players, :team_b_match_players, :first_match_inning, :second_match_inning, :match_performances
   before_save :default_status
   just_define_datetime_picker :start_time
+
+  after_save :update_innings_data
   
   def default_status
     self.status = STATUS_INITIALIZED
@@ -48,6 +50,14 @@ class Match < ActiveRecord::Base
       return NULL
     else
       return Team.find(match_result.first_batting_team_id)
+    end
+  end
+
+  def second_batting_team
+    if !match_result
+      return NULL
+    else
+      return Team.find(match_result.second_batting_team_id)
     end
   end
   
@@ -101,10 +111,35 @@ class Match < ActiveRecord::Base
   
   def get_title
     if home_team_inning && away_team_inning
-		  return "#{home_team.name} <span class='result_score'>#{home_team_inning.runs}/#{home_team_inning.wickets} <span>#{home_team_inning.overs}</span></span> v #{away_team.name} <span class='result_score'>#{away_team_inning.runs}/#{away_team_inning.wickets} <span>#{away_team_inning.overs}</span></span>";
+		  #return "#{home_team.name} <span class='result_score'>#{home_team_inning.runs}/#{home_team_inning.wickets} <span>#{home_team_inning.overs}</span></span> v #{away_team.name} <span class='result_score'>#{away_team_inning.runs}/#{away_team_inning.wickets} <span>#{away_team_inning.overs}</span></span>"
+      return "#{home_team.name} v #{away_team.name}"
 		else
-		  return "#{home_team.name} v #{away_team.name}";
+		  return "#{home_team.name} v #{away_team.name}"
 		end
+  end
+
+  def update_innings_data
+    if !away_team_inning.blank? and !home_team_inning.blank? and !match_performances.blank?
+      if home_team_id == match_result.second_batting_team_id
+        self.home_team_inning.runs = first_batting_performances.map{|m| m.runs_scored.to_i}.inject(&:+)
+        self.home_team_inning.wickets = first_batting_performances.where("mode_of_dismissal is not null").length
+        self.home_team_inning.balls = first_batting_performances.map{|m| m.balls_faced.to_i}.inject(&:+)
+
+        self.away_team_inning.runs = second_batting_performances.map{|m| m.runs_scored.to_i}.inject(&:+)
+        self.away_team_inning.wickets = second_batting_performances.where("mode_of_dismissal is not null").length
+        self.away_team_inning.balls = second_batting_performances.map{|m| m.balls_faced.to_i}.inject(&:+)
+      else
+        self.away_team_inning.runs = first_batting_performances.map{|m| m.runs_scored.to_i}.inject(&:+)
+        self.away_team_inning.wickets = first_batting_performances.where("mode_of_dismissal is not null").length
+        self.away_team_inning.balls = first_batting_performances.map{|m| m.balls_faced.to_i}.inject(&:+)
+
+        self.home_team_inning.runs = second_batting_performances.map{|m| m.runs_scored.to_i}.inject(&:+)
+        self.home_team_inning.wickets = second_batting_performances.where("mode_of_dismissal is not null").length
+        self.home_team_inning.balls = second_batting_performances.map{|m| m.balls_faced.to_i}.inject(&:+)
+      end
+      self.home_team_inning.save
+      self.away_team_inning.save
+    end
   end
   
   scope :initialized, lambda { where(:status => STATUS_INITIALIZED) }

@@ -23,8 +23,8 @@ ActiveAdmin.register League do
     column :id
     column :name
     column :description
-    actions do |league|
-      link_to "Update Positions", :controller => "league_positions", :action => "index", 'q[league_id_eq]' => "#{league.id}".html_safe
+    column do |league|
+      "#{link_to "Add Teams", edit_admin_league_path(league)} &nbsp; #{link_to "Goto League", :controller => "league_positions", :action => "index", 'q[league_id_eq]' => "#{league.id}".html_safe} ".html_safe
     end
   end
   

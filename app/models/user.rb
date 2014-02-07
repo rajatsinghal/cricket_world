@@ -44,4 +44,34 @@ class User < ActiveRecord::Base
   def set_confirmed
     self.status = STATUS_CONDIRMED
   end
+
+  def self.create_more
+    player_names = ['Sunil Singh','Nadim Hussain','Lawton Niall','Arpit Kumar','Tanuj Barooah','Abhinav Aggarwal','Pratik Mishra','Rajat Bhatnagar','Arpit Kapoor','Rajat Kumar','Anuj Maheshwari','Chandrakishore Baruah','Suraj Maheshwari','Apurv Mehta','Nikhil Kohli','Abhay Mongia','Harshal Bhatnagar','Erin Quirk','Sukhram Chopra','Gurdweep Dhariwal','Aditya Pandit','Mohan Patel','Agamjeet Gupta','Pargat Chopra','Archie Tyas','Sahib Arora','Nikhil Mongia','Sukhindir Chopra','Abhay Rastogi','Harshal Udayar']
+    user = User.find(1)
+
+    15.times do |i|
+      new_user = User.new
+      new_user.phone_number = user.phone_number
+      new_user.email = "saurabh+#{i}@octathorpeweb.com"
+      new_user.name = player_names[i]
+      random_temporary_password = User.get_random_temporary_password
+      new_user.password = random_temporary_password
+      new_user.password_confirmation = random_temporary_password
+      new_user.save
+      new_user.players.create({team_id: 1})
+    end
+
+    15.times do |i|
+      new_user = User.new
+      new_user.phone_number = user.phone_number
+      new_user.email = "saurabh+#{15+i}@octathorpeweb.com"
+      new_user.name = player_names[15+i]
+      random_temporary_password = User.get_random_temporary_password
+      new_user.password = random_temporary_password
+      new_user.password_confirmation = random_temporary_password
+      new_user.save
+      new_user.players.create({team_id: 2})
+    end
+  end
+
 end

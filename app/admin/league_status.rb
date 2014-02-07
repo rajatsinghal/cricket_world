@@ -8,11 +8,11 @@ ActiveAdmin.register LeagueStatus, :as => "League Position" do
   
   index do 
       column :id 
-      column :league_id do |order|
-        order.league.name
+      column :league_id do |league_status|
+        league_status.league.name
       end  
-      column :team_id do |order|
-        order.team.name
+      column :team_id do |league_status|
+        league_status.team.name
       end
       column :matches_played
       column :position
@@ -20,7 +20,9 @@ ActiveAdmin.register LeagueStatus, :as => "League Position" do
       column :losses
       column :ties
       column :points
-      column :run_rate
+      column :run_rate do |league_status|
+        league_status.run_rate.blank? ? 0.00 : league_status.run_rate
+      end
       actions
   end
   
@@ -34,7 +36,7 @@ ActiveAdmin.register LeagueStatus, :as => "League Position" do
       f.input :losses, :as=>:select, :collection => 0..30
       f.input :ties, :as=>:select, :collection => 0..30
       f.input :points, :as=>:select, :collection => 0..30
-      f.input :run_rate
+      f.input :run_rate, :as=>:string, :placeholder =>"1.36"
     end
     f.actions
   end
