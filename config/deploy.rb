@@ -44,7 +44,7 @@ namespace :deploy do
   task :assets_precompile do
     on roles(:app) do
       execute "cd #{release_path} && bundle exec rake assets:precompile RAILS_ENV=#{fetch(:stage)}"    
-      execute "cd #{release_path} && cp app/assets/*.* public/assets/"
+      execute "cd #{release_path} && cp app/assets/images/*.* public/assets/"
     end
   end
 
