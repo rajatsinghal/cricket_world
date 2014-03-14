@@ -23,6 +23,8 @@ class Match < ActiveRecord::Base
   just_define_datetime_picker :start_time
 
   after_save :update_innings_data
+
+  PLAYERS = 7
   
   def default_status
     self.status = STATUS_INITIALIZED
@@ -140,6 +142,30 @@ class Match < ActiveRecord::Base
       self.home_team_inning.save
       self.away_team_inning.save
     end
+  end
+
+  def scores
+    home_team_runs = home_team_wickets = home_team_balls = away_team_runs = away_team_wickets = away_team_balls = 0
+    if !away_team_inning.blank? and !home_team_inning.blank? and !match_performances.blank?
+      if home_team_id == match_result.second_batting_team_id
+        home_team_runs = first_batting_performances.map{|m| m.runs_scored.to_i}.inject(&:+)
+        home_team_wickets = first_batting_performances.where("mode_of_dismissal is not null").length
+        home_team_balls = first_batting_performances.map{|m| m.balls_faced.to_i}.inject(&:+)
+
+        away_team_runs = second_batting_performances.map{|m| m.runs_scored.to_i}.inject(&:+)
+        away_team_wickets = second_batting_performances.where("mode_of_dismissal is not null").length
+        away_team_balls = second_batting_performances.map{|m| m.balls_faced.to_i}.inject(&:+)
+      else
+        home_team_runs = first_batting_performances.map{|m| m.runs_scored.to_i}.inject(&:+)
+        home_team_wickets = first_batting_performances.where("mode_of_dismissal is not null").length
+        home_team_balls = first_batting_performances.map{|m| m.balls_faced.to_i}.inject(&:+)
+
+        away_team_runs = second_batting_performances.map{|m| m.runs_scored.to_i}.inject(&:+)
+        away_team_wickets = second_batting_performances.where("mode_of_dismissal is not null").length
+        away_team_balls = second_batting_performances.map{|m| m.balls_faced.to_i}.inject(&:+)
+      end
+    end
+    return [home_team_runs , home_team_wickets , home_team_balls , away_team_runs , away_team_wickets , away_team_balls]
   end
   
   scope :initialized, lambda { where(:status => STATUS_INITIALIZED) }

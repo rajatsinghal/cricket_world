@@ -1,7 +1,7 @@
 class Team < ActiveRecord::Base  
   belongs_to :admin_user
   has_many :league_statuses, :dependent => :delete_all
-  has_many :players, :dependent => :delete_all
+  has_many :players, :dependent => :delete_all  
   
   def latest_league_status
     return self.league_statuses.last

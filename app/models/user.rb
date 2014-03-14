@@ -3,17 +3,19 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  validates_presence_of :name, :email, :phone_number
+  #validates_presence_of :name, :email, :phone_number
+  validates_presence_of :name
   
   has_many :players, :dependent => :delete_all
   has_many :team_managers, :dependent => :delete_all
+  belongs_to :admin_user
   
   accepts_nested_attributes_for :players, :allow_destroy => true
   accepts_nested_attributes_for :team_managers, :allow_destroy => true
   
   attr_accessor :temporary_password
   before_create :set_pending
-  after_create :send_invitation
+  #after_create :send_invitation
   
   STATUS_PENDING = 1
   STATUS_CONDIRMED = 2

@@ -1,0 +1,31 @@
+<% current_admin_user.users.build %>
+
+<%= semantic_form_for(current_admin_user, :url=>admin_admin_user_path(current_admin_user), builder: ActiveAdmin::FormBuilder) do |f| %>
+
+  <%= f.semantic_errors *f.object.errors.keys %>
+
+  <%= f.semantic_fields_for :users, :allow_destroy => true do |user_form| %>
+    <div class="has_many_container users">
+      <fieldset class="inputs has_many_fields">
+      <ol>
+        <%= user_form.input :name %>
+        <%= user_form.input :email %>     
+
+         <% temp_pwd = User.get_random_temporary_password %>
+        <%= user_form.input :password, :as => :hidden, :input_html => { :value => temp_pwd }  %>
+        <%= user_form.input :password_confirmation, :as => :hidden, :input_html => { :value => temp_pwd }  %>
+
+        <%= user_form.inputs "Plays for" do %>
+        	<%= user_form.has_many :players, :allow_destroy =>true do |q| %>
+        		<%= q.input :team, :collection => Team.all.map {|team| [team.name, team.id]} %>
+        	<% end %>	
+        <% end %>
+      </ol>
+      </fieldset>
+    </div>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, label: 'Save Users' %>
+  <% end %>
+<% end %>

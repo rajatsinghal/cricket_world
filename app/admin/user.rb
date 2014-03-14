@@ -4,6 +4,10 @@ ActiveAdmin.register User do
   
   permit_params :name, :email, :phone_number, :password, :password_confirmation, :temporary_password, players_attributes: [:id, :team_id, :_destroy], team_managers_attributes: [:id, :team_id, :_destroy]
   
+  action_item(:only => :index) do
+    link_to("Create Users", create_users_admin_users_path)
+  end
+
   form do |f|
     f.inputs "User Details" do
       f.semantic_errors *f.object.errors.keys
@@ -45,6 +49,9 @@ ActiveAdmin.register User do
       params[:user].merge!({ password: random_temporary_password, password_confirmation: random_temporary_password, temporary_password: random_temporary_password })
       create!
     end
+  end
+
+  collection_action :create_users do    
   end
   
 end

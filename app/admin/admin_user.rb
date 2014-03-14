@@ -1,5 +1,5 @@
 ActiveAdmin.register AdminUser do
-  permit_params :email, :password, :password_confirmation, teams_attributes: [:id, :name, :_destroy]
+  permit_params :email, :password, :password_confirmation, teams_attributes: [:id, :name, :_destroy], users_attributes: [:id, :name, :email, :_destroy, :password, :password_confirmation, players_attributes: [:id, :team_id, :_destroy]]
 
   index do
     column :email
@@ -23,7 +23,11 @@ ActiveAdmin.register AdminUser do
   controller do
     def update
       update! do |format|
-        format.html { redirect_to admin_teams_path, :notice => "Teams added successfully" }
+        if params[:admin_user].has_key?(:teams_attributes)
+          format.html { redirect_to admin_teams_path, :notice => "Teams added successfully" }
+        else
+          format.html { redirect_to admin_users_path, :notice => "Users added successfully" }
+        end
       end
     end
   end

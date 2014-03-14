@@ -12,11 +12,11 @@ class MatchesController < ApplicationController
   
   def upload_lineup
     @match = Match.find(params[:id])
-    if @match.team_a_match_players.length < 11
-      11.times { @match.team_a_match_players.build }
+    if @match.team_a_match_players.length < Match::PLAYERS
+      Match::PLAYERS.times { @match.team_a_match_players.build }
     end
-    if @match.team_b_match_players.length < 11
-      11.times { @match.team_b_match_players.build }
+    if @match.team_b_match_players.length < Match::PLAYERS
+      Match::PLAYERS.times { @match.team_b_match_players.build }
     end
   end
   

@@ -10,4 +10,8 @@ class MatchInning < ActiveRecord::Base
       return (balls/6).to_s+"."+(balls%6).to_s+" ov";
     end
   end
+
+  def self.return_overs(balls)
+  	return (balls/6).to_s+"."+(balls%6).to_s+" ov";
+  end
 end
