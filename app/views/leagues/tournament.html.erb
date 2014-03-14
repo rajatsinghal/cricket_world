@@ -1,0 +1,78 @@
+<div class="league_header2"><h1><%= @league.name; %></span></h1></div>
+
+<div class="league_infobar clearfix">
+	<!--<div class="all_records">
+		<ul>
+			<li>
+				<%= link_to("Most Runs", ''); %>
+				<img src="<%= asset_path('small_black_star.png') %>" />
+			</li>
+			<li>
+				<%= link_to("Best Batting Average", ''); %>
+				<img src="<%= asset_path('small_black_star.png') %>" />
+			</li>
+			<li>
+				<%= link_to("Highest Score", ''); %>
+				<img src="<%= asset_path('small_black_star.png') %>" />
+			</li>
+			<li>
+				<%= link_to("Most Wickets", ''); %>
+				<img src="<%= asset_path('small_black_star.png') %>" />
+			</li>
+			<li>
+				<%= link_to("Best Bowling Average", ''); %>
+				<img src="<%= asset_path('small_black_star.png') %>" />
+			</li>
+			<li>
+				<%= link_to("Best Bowling Figures", ''); %>
+				<img src="<%= asset_path('small_black_star.png') %>" />
+			</li>
+			<li>
+				<%= link_to("Best Economy", ''); %>
+			</li>
+		</ul>
+	</div>-->
+</div>
+<br clear="all" />
+
+<div class="padit">
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="span5">
+				<table class="table table-striped league_table">
+					<thead>
+						<tr>
+							<th align="left" width="10">&nbsp;</th>
+							<th align="left">Team</th>
+						</tr>   
+					</thead>     
+					<% Team.all.each do |team| %>
+					<tr>
+						<td>&nbsp;</td>
+						<td><%= link_to team.name, team_path(team); %></td>
+					</tr>
+					<% end %>
+				</table>
+			</div>
+
+			<div class="span7">
+				<ul class="player_matches">
+				<% Match.all.each do |match| %>
+					<li class="league">
+						<span class="match_date">
+							<span class="date"><%= match.start_time.strftime('%d') %></span>
+							<span class="month"><%= match.start_time.strftime('%b') %></span>
+						</span>
+
+						<%= render :partial => '/matches/result_string', :locals => {match: match} %>
+						<br clear="all" />
+					</li>
+				<% end %>
+				</ul>
+
+			</div>
+			
+		</div> <!--end span12 -->
+		<br clear="all" />
+	</div>
+</div>

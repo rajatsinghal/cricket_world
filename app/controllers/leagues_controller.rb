@@ -4,5 +4,6 @@ class LeaguesController < ApplicationController
   
   def show
     @league = League.find(params[:id])
+    render 'tournament'
   end
 end
