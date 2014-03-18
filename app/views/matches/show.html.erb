@@ -1,3 +1,9 @@
 <%= render :partial => 'header' %>
 <div class="padit">
+	<% if !@match.away_team_inning.blank? and !@match.home_team_inning.blank? and !@match.match_performances.blank? %>
+	<% scores = @match.scores %>
+	<%= render :partial => 'inning', :locals => { batting_performances: @match.first_batting_performances, bowling_performances: @match.second_batting_performances, team: @match.first_batting_team, total_runs: scores[0], total_wickets: scores[1], total_balls: scores[2] } %>
+	<p class="divider"></p>
+	<%= render :partial => 'inning', :locals => { batting_performances: @match.second_batting_performances, bowling_performances: @match.first_batting_performances, team: @match.second_batting_team, total_runs: scores[3], total_wickets: scores[4], total_balls: scores[5] } %>
+	<% end %>
 </div>

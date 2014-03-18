@@ -17,10 +17,10 @@
 						<img src="<%= asset_path('team_logo.jpg') %>" />
 					</div>
 					<div class="span3"> 
-						Age: <strong>25yrs</strong><br />
-						Height: <strong>6 ft</strong><br />
-						Batting Style: <strong>Right hand: Opener</strong><br />
-						Bowling Style: <strong>Right hand: Off-break</strong>
+						Age: <strong><%= player.user.age %></strong><br />
+						Height: <strong><%= player.user.height %></strong><br />
+						Batting Style: <strong><%= player.user.batting_style %></strong><br />
+						Bowling Style: <strong><%= player.user.bowling_style %></strong>
 					</div>	
 					<br clear="all" />
 				</div>

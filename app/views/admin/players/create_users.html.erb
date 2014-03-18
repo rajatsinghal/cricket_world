@@ -1,0 +1,41 @@
+<% 10.times {current_admin_user.users.build} %>
+
+<%= semantic_form_for(current_admin_user, :url=>admin_admin_user_path(current_admin_user), builder: ActiveAdmin::FormBuilder) do |f| %>
+
+  <%= f.semantic_errors *f.object.errors.keys %>
+
+  <%= f.semantic_fields_for :users, :allow_destroy => true do |user_form| %>
+    <% if !user_form.object.persisted? %>
+
+      <div class="has_many_container users">
+        <fieldset class="inputs has_many_fields">
+        <ol>
+          
+            <%= user_form.input :name %>
+            <%= user_form.input :email %>
+            <%= user_form.input :age %>
+            <%= user_form.input :height %>
+            <%= user_form.input :batting_style %>
+            <%= user_form.input :bowling_style %>
+
+            <% temp_pwd = User.get_random_temporary_password %>
+            <%= user_form.input :password, :as => :hidden, :input_html => { :value => temp_pwd }  %>
+            <%= user_form.input :password_confirmation, :as => :hidden, :input_html => { :value => temp_pwd }  %>
+
+            <% user_form.object.players.build %>
+            
+          	<%= user_form.semantic_fields_for :players, :allow_destroy =>true do |q| %>
+          		<%= q.input :team, :collection => Team.all.map {|team| [team.name, team.id]} %>
+          	<% end %>	
+          
+        </ol>
+        </fieldset>
+      </div>
+
+    <% end %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, label: 'Save Players' %>
+  <% end %>
+<% end %>

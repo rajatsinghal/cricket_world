@@ -22,7 +22,7 @@ class Match < ActiveRecord::Base
   before_save :default_status
   just_define_datetime_picker :start_time
 
-  after_save :update_innings_data
+  #after_save :update_innings_data
 
   PLAYERS = 7
   
@@ -124,19 +124,19 @@ class Match < ActiveRecord::Base
     if !away_team_inning.blank? and !home_team_inning.blank? and !match_performances.blank?
       if home_team_id == match_result.second_batting_team_id
         self.home_team_inning.runs = first_batting_performances.map{|m| m.runs_scored.to_i}.inject(&:+)
-        self.home_team_inning.wickets = first_batting_performances.where("mode_of_dismissal is not null").length
+        self.home_team_inning.wickets = first_batting_performances.where("mode_of_dismissal is not null and mode_of_dismissal != ''").length
         self.home_team_inning.balls = first_batting_performances.map{|m| m.balls_faced.to_i}.inject(&:+)
 
         self.away_team_inning.runs = second_batting_performances.map{|m| m.runs_scored.to_i}.inject(&:+)
-        self.away_team_inning.wickets = second_batting_performances.where("mode_of_dismissal is not null").length
+        self.away_team_inning.wickets = second_batting_performances.where("mode_of_dismissal is not null and mode_of_dismissal != ''").length
         self.away_team_inning.balls = second_batting_performances.map{|m| m.balls_faced.to_i}.inject(&:+)
       else
         self.away_team_inning.runs = first_batting_performances.map{|m| m.runs_scored.to_i}.inject(&:+)
-        self.away_team_inning.wickets = first_batting_performances.where("mode_of_dismissal is not null").length
+        self.away_team_inning.wickets = first_batting_performances.where("mode_of_dismissal is not null and mode_of_dismissal != ''").length
         self.away_team_inning.balls = first_batting_performances.map{|m| m.balls_faced.to_i}.inject(&:+)
 
         self.home_team_inning.runs = second_batting_performances.map{|m| m.runs_scored.to_i}.inject(&:+)
-        self.home_team_inning.wickets = second_batting_performances.where("mode_of_dismissal is not null").length
+        self.home_team_inning.wickets = second_batting_performances.where("mode_of_dismissal is not null and mode_of_dismissal != ''").length
         self.home_team_inning.balls = second_batting_performances.map{|m| m.balls_faced.to_i}.inject(&:+)
       end
       self.home_team_inning.save
@@ -149,19 +149,19 @@ class Match < ActiveRecord::Base
     if !away_team_inning.blank? and !home_team_inning.blank? and !match_performances.blank?
       if home_team_id == match_result.second_batting_team_id
         home_team_runs = first_batting_performances.map{|m| m.runs_scored.to_i}.inject(&:+)
-        home_team_wickets = first_batting_performances.where("mode_of_dismissal is not null").length
+        home_team_wickets = first_batting_performances.where("mode_of_dismissal is not null and mode_of_dismissal != ''").length
         home_team_balls = first_batting_performances.map{|m| m.balls_faced.to_i}.inject(&:+)
 
         away_team_runs = second_batting_performances.map{|m| m.runs_scored.to_i}.inject(&:+)
-        away_team_wickets = second_batting_performances.where("mode_of_dismissal is not null").length
+        away_team_wickets = second_batting_performances.where("mode_of_dismissal is not null and mode_of_dismissal != ''").length
         away_team_balls = second_batting_performances.map{|m| m.balls_faced.to_i}.inject(&:+)
       else
         home_team_runs = first_batting_performances.map{|m| m.runs_scored.to_i}.inject(&:+)
-        home_team_wickets = first_batting_performances.where("mode_of_dismissal is not null").length
+        home_team_wickets = first_batting_performances.where("mode_of_dismissal is not null and mode_of_dismissal != ''").length
         home_team_balls = first_batting_performances.map{|m| m.balls_faced.to_i}.inject(&:+)
 
         away_team_runs = second_batting_performances.map{|m| m.runs_scored.to_i}.inject(&:+)
-        away_team_wickets = second_batting_performances.where("mode_of_dismissal is not null").length
+        away_team_wickets = second_batting_performances.where("mode_of_dismissal is not null and mode_of_dismissal != ''").length
         away_team_balls = second_batting_performances.map{|m| m.balls_faced.to_i}.inject(&:+)
       end
     end

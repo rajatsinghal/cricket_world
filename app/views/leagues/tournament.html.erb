@@ -55,13 +55,13 @@
 				</table>
 			</div>
 
-			<div class="span7">
+			<div class="span6 offset1">
 				<ul class="player_matches">
 				<% Match.all.each do |match| %>
 					<li class="league">
 						<span class="match_date">
-							<span class="date"><%= match.start_time.strftime('%d') %></span>
-							<span class="month"><%= match.start_time.strftime('%b') %></span>
+							<span class="date"><%= !match.start_time.blank? ? match.start_time.strftime('%d') : '' %></span>
+							<span class="month"><%= !match.start_time.blank? ? match.start_time.strftime('%b') : '' %></span>
 						</span>
 
 						<%= render :partial => '/matches/result_string', :locals => {match: match} %>

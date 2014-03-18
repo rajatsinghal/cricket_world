@@ -1,0 +1,47 @@
+<div style="margin-top:20px;">
+	<h2><%= team.name %> (<%= total_runs %>/<%= total_wickets %> in <%= MatchInning.return_overs(total_balls) %>)</h2><br />
+	<table class="table table-striped table-hovered table-bordered" style="width: 80%;">
+		<tr>
+			<th>#</th>
+			<th style="width: 20%;">Batsman</th>
+			<th>&nbsp;</th>
+			<th>Runs</th>
+			<th>Balls</th>
+			<th>Fours</th>
+			<th>Sixes</th>
+		</tr>
+		<% batting_performances.order('batting_position').each do |batting_performance| %>
+			<% if !batting_performance.runs_scored.blank? %>
+				<tr>
+					<td><%= batting_performance.batting_position %></td>
+					<td><%= batting_performance.player.user.name %></td>
+					<td><%= batting_performance.mode_of_dismissal %></td>
+					<td><%= batting_performance.runs_scored %></td>
+					<td><%= batting_performance.balls_faced %></td>
+					<td><%= batting_performance.fours %></td>
+					<td><%= batting_performance.sixes %></td>
+				</tr>
+			<% end %>
+		<% end %>
+	</table>
+
+	<table class="table table-striped table-hovered table-bordered" style="width: 50%;">
+		<tr>
+			<th>Bowler</th>
+			<th>Overs</th>
+			<th>Runs</th>
+			<th>Wickets</th>
+		</tr>
+		<% bowling_performances.each do |bowling_performance| %>
+			<% if !bowling_performance.balls_bowled.blank? %>
+				<tr>
+					<td><%= bowling_performance.player.user.name %></td>
+					<td><%= bowling_performance.balls_bowled %></td>
+					<td><%= bowling_performance.runs_conceded %></td>
+					<td><%= bowling_performance.wickets %></td>
+				</tr>
+			<% end %>
+		<% end %>
+	</table>
+</div>
+<br />

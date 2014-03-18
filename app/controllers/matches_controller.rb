@@ -48,6 +48,8 @@ class MatchesController < ApplicationController
       @bowling_team = @match.second_batting_team
       @batting_performances = @match.first_batting_performances
       @bowling_performances = @match.second_batting_performances
+      @batting_players = @match.first_batting_players
+      @bowling_players = @match.second_batting_players
       @url = save_inning_match_path(@match, {:number =>2})
     else
       @innings = @match.match_innings.where("number = #{params[:number]}").first
@@ -55,6 +57,8 @@ class MatchesController < ApplicationController
       @bowling_team = @match.first_batting_team
       @batting_performances = @match.second_batting_performances
       @bowling_performances = @match.first_batting_performances
+      @batting_players = @match.second_batting_players
+      @bowling_players = @match.first_batting_players
       @url = save_inning_match_path(@match)
     end
 
@@ -64,11 +68,13 @@ class MatchesController < ApplicationController
     match = Match.find(params[:id])
     match.attributes = match_params
     match.save
+    #match.update_innings_data
     flash[:success] = "Innings data saved!"
     if params.has_key?("number")
       redirect_to upload_inning_match_path(match, {:number=>2})
     else
-      redirect_to upload_inning_match_path(match, {:number=>2})
+      redirect_to match_path(match)
+      #redirect_to upload_inning_match_path(match, {:number=>2})
     end
   end
   

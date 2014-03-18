@@ -26,7 +26,7 @@ ActiveAdmin.register AdminUser do
         if params[:admin_user].has_key?(:teams_attributes)
           format.html { redirect_to admin_teams_path, :notice => "Teams added successfully" }
         else
-          format.html { redirect_to admin_users_path, :notice => "Users added successfully" }
+          format.html { redirect_to admin_players_path, :notice => "Players added successfully" }
         end
       end
     end

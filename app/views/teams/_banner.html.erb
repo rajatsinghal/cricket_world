@@ -1,7 +1,7 @@
 <section class="team_head">	
 	<span class="league_info">
-		<span class="league_position"><%= team.latest_league_status.position; %></span>
-		<span class="league_name"><%= link_to(team.latest_league_status.league_id, league_path(team.latest_league_status.league_id)); %></span>
+		<span class="league_position"><%#= team.latest_league_status.position; %></span>
+		<span class="league_name"><%#= link_to(team.latest_league_status.league_id, league_path(team.latest_league_status.league_id)); %></span>
 	</span>
 	<span class="big_team_name"><span><%= link_to(team.name, team_path(team)); %></span></span>
 </section>

@@ -17,8 +17,12 @@ ActiveAdmin.register Match do
   
   index do
     column :id
-    column 'Team A', :home_team
-    column 'Team B', :away_team
+    column 'Team A' do |match|
+      match.home_team.name
+    end
+    column 'Team B' do |match|
+      match.away_team.name
+    end
     column :start_time
     column :stadium_name
     column :description

@@ -4,6 +4,7 @@
 			<li>
 				<span class="match_date"><span class="date"><%= recent_match.start_time.strftime("%d") %></span><span class="month"><%= recent_match.start_time.strftime("%b") %></span></span>
 				<%= render :partial=>"matches/result_string", :locals=>{:match=>recent_match, :team=>team}; %>
+				<br clear="all" /> 
 			</li>
     	<% end %>
 	</ul>

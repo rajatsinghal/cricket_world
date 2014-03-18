@@ -766,7 +766,7 @@ section.bid_section{ background:#FFC; border:2px solid #FC0; padding:5px 15px 10
 
 
 #main{  
-article{ padding:0px 0px 0px;background:#FFF;.drop-shadow(0, 3px, 5px, 0.2); min-height:500px;
+article{ padding:0px 0px 0px;background:#FFF;.drop-shadow(0, 3px, 5px, 0.2); min-height:500px; background:#f3f3f3;
 /*.bordered(#333, #333, #333, #333); border-width:4px;*/
 }}
 
@@ -888,7 +888,6 @@ nav.side_menu{
 .visible-xxs{ display:none}
 
 
-#team_nav{background:url("/assets/bg2.png") repeat-x left bottom #fefefe;}
 #clock{font-family: @helvetica; float:right; margin:0px 0px 0 0px; color:#fafafa; padding:0px 7px; background:#333; font-size:16px; line-height:43px;}
 #top_username{ float:right; margin:0px 0px 0 0px; color:#fafafa; padding:11px 10px 12px; background:#444; font-size:15px;}
 .user_points{ margin:6px 5px 0 0px;  padding:0px 10px 0 0;  font-size:27px; letter-spacing:1px; font-family: 'LeagueGothicRegular', @helvetica;}
@@ -1269,6 +1268,8 @@ h4 { color:@orange}
 .change_id,.add_seats,.remove_seats{ padding-bottom:15px;}
 
 
+ul.nav{ margin-bottom:0px !important}
+
 
 /* Invitation */
 .invite_link{ padding:15px 10px; background:#E7F5FF; font-size:14px; line-height:1.6em; margin-bottom:20px; 
@@ -1288,13 +1289,15 @@ label{ margin-bottom:0px; margin-top:1px}}
 
 /* team */
 section.team_head{ background:#ffcc66;
-	.big_team_name{font-family: 'LeagueGothicRegular', @helvetica;  color:#000; text-transform:uppercase; display:block; margin-right:95px; line-height:81px; font-size:70px;text-align:center; padding-top:9px;}
+	.big_team_name{font-family: 'LeagueGothicRegular', @helvetica;  color:#000; text-transform:uppercase; display:block;  line-height:81px; font-size:70px;text-align:center; padding-top:9px;}
 	.big_team_name a{font-family: 'LeagueGothicRegular', @helvetica;  color:#000; text-transform:uppercase; display:block; margin-right:95px; line-height:1.2em; font-size:70px;text-align:center; }
 	.big_team_name a:hover{ text-decoration:none !important;}
 	.league_info{ display:inline-block; width:90px; background:#000; color:#FFF; float:left; text-align:center;}
 	.league_position{ display:block; font-size:42px; line-height:1.2em; background:#444; font-family:Tahoma, Geneva, sans-serif }
 	.league_name a{display:block; font-size:31px; line-height:1.4em;font-family: 'LeagueGothicRegular', @helvetica; color:#0AF !important;}
 }
+
+
 
 
 .bot_mssg{ font-size:13px; color:#EEE; display:block; margin:10px 10px;}
@@ -1341,7 +1344,7 @@ float:right;margin:-65px 20px 0 0;
 #update_club_logo{ padding:7px; background:#FC0; display:block; margin:150px 0 0;}
 
 .team_extra_info{
-	background:#FFF; padding:20px 0px 15px 35px;
+	background:#FFF; padding:35px 0px 15px 35px;
 	.team_share{ float:right; IMG{ margin-right:20px;}}
 	ul{ 
 		margin:0px; float:left;
@@ -1377,7 +1380,7 @@ ul.transfer_stats{ margin:5px auto 25px 10px; float:left;
 .t_large{font-size:70px;}
 
 .card{ .drop-shadow(0, 9px, 12px, 0.2); border-bottom:4px #666 solid;}
-.card_puff{ padding:0 20px 20px; background:#f8f8f8; }
+.card_puff{ padding:0 20px 20px; background:#f8f8f8; display:none; }
 #setorder{}
 section.next_match{ text-align:center; color:#fff;background:#333; padding:15px 10px;
 a.match{font-family: @helvetica; font-size:18px;display:block; line-height:35px; color:#0AF !important;
@@ -1411,8 +1414,8 @@ section.final_position{ text-align:center; margin-top:0px; float:right; margin-r
 	.month{ color:#222;line-height:19px; background:#fff}
 }
 
-.team_tab_content{ background:#fafafa; padding:10px; min-height:200px;
-.player_matches li{ padding:17px 0 23px; margin:0px 0 0 20px !important}
+.team_tab_content{ background:#FFF; padding:10px; min-height:200px;
+.player_matches li{ padding:17px 0 36px; margin:0px 0 0 20px !important}
 .time{ color:#AAA;}
 a.match{ line-height:25px; font-size:14px;}
 }
@@ -1455,8 +1458,9 @@ a.match{ line-height:25px; font-size:14px;}
 }
 
 
+#team_nav IMG{ max-height:75px; padding:3px 20px 3px 20px;}
 
-.press{.drop-shadow(0, 6px, 10px, 0.2);
+.press{ display:none;.drop-shadow(0, 6px, 10px, 0.2);
 	h2 {font-family: 'LeagueGothicRegular', @helvetica; background: url("/assets/press2.png") no-repeat 10px 10px; letter-spacing:1px; padding:13px 6px 7px 60px; font-size:31px; border-bottom:2px solid #777;
 	a{letter-spacing:0px; float:right; display:inline-block; font-family:@helvetica; font-size:12px; margin:4px 5px 0 0; font-weight:normal}} 
 

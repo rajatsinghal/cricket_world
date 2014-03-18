@@ -21,7 +21,7 @@
 					<%= batting_performance.hidden_field(:batting_position) %>
 					<%= batting_performance.hidden_field(:team_id) %>
 					<td class='position'><%= batting_performance.object.batting_position %></td>
-					<td><%= batting_performance.collection_select(:player_id, @match.first_batting_players, :player_id, :player_name, :class=>'scorecard_field') %></td>
+					<td><%= batting_performance.collection_select(:player_id, @batting_players, :player_id, :player_name, :class=>'scorecard_field') %></td>
 					<td style="width:20%"><%= batting_performance.text_field(:mode_of_dismissal) %></td>
 					<td><%= batting_performance.text_field(:runs_scored, :class=>'scorecard_field') %></td>
 					<td><%= batting_performance.text_field(:balls_faced, :class=>'scorecard_field') %></td>
@@ -43,8 +43,8 @@
 				<tr>
 					<%= bowling_performance.hidden_field(:bowling_position) %>
 					<%= bowling_performance.hidden_field(:team_id) %>
-					<td><%= bowling_performance.collection_select(:player_id, @match.second_batting_players, :player_id, :player_name, :class=>'scorecard_field') %></td>
-					<td><%= bowling_performance.text_field(:balls_bowled, :class=>'scorecard_field') %></td>
+					<td><%= bowling_performance.collection_select(:player_id, @bowling_players, :player_id, :player_name, :class=>'scorecard_field') %></td>
+					<td><%= bowling_performance.text_field(:balls_bowled, :class=>'scorecard_field', :value=>MatchInning.return_overs_without_string(bowling_performance.object.balls_bowled)) %></td>
 					<td><%= bowling_performance.text_field(:runs_conceded, :class=>'scorecard_field') %></td>
 					<td><%= bowling_performance.text_field(:wickets, :class=>'scorecard_field') %></td>
 				</tr>

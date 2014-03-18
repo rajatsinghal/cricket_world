@@ -13,7 +13,7 @@
 			</section>
 		</div><!--end card_puff -->
 
-		<section class="team_extra_info">
+		<!--<section class="team_extra_info">
 			<ul class="clearfix">
 				<li>
 					<span>WWLWLW</span>Winning Streak
@@ -32,29 +32,40 @@
 				</li>
 			</ul>
 			<div class="team_share">
-				<%= link_to image_tag('fb-share-button.png'), '' %>
-			</div>
+				<%#= link_to image_tag('fb-share-button.png'), '' %>
+			</div>-->
 			<br clear="all" />
 		</section>
 	</div><!--end card -->
 	<br /><br clear="all" />
 
-	<div class="span7">
-		<div class="team_tab">
-			<ul class="nav nav-tabs" id="tab_this">
-				<li class="active"><a href="#recent_matches" data-toggle="tab">Matches</a></li>
-			</ul>
+	<div class="span5">
+		<h3 class="star_head2">Players</h3>
+		<div id="players_list" class="m10 non_premium">
+			<% @team.players.each do |player| %>
+			<section class="player_condensed">
+				<h2 class="player_name p_medium"><%= link_to player.name, player %></h2>  
+
+				<div class="player_info2">
+					<div class="span1 ml0">
+						<img src="<%= asset_path('team_logo.jpg') %>" />
+					</div>
+					<div class="span3">
+						Age: <strong><%= player.user.age %></strong><br />
+						Height: <strong><%= player.user.height %></strong><br />
+						Batting Style: <strong><%= player.user.batting_style %></strong><br />
+						Bowling Style: <strong><%= player.user.bowling_style %></strong>
+					</div>	
+					<br clear="all" />
+				</div>
+			</section>
+			<% end %>
 		</div>
-		<div class="tab-content team_tab_content">
-			<div class="tab-pane active" id="recent_matches" data-fetched="0">
-				<%= render :partial=>"recent_matches", :locals=>{:team=>@team} %>
-			</div>
-		</div>        
-		<br clear="all" />    
 	</div>
-	
-	<div class="span4 fr">
-		<%= render :partial=>"press_release" %>
+
+	<div class="span5 offset1">
+		<h3 class="star_head2">Matches</h3>
+		<%= render :partial=>"recent_matches", :locals=>{:team=>@team} %>
 	</div>
 	<br clear="all" /> 
 </div>

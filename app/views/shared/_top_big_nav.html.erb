@@ -1,20 +1,12 @@
 <div id="team_nav">
-	<div class="container" >
-		<div class="row">
-			<div class="span3">
-				<%= link_to(image_tag("logo2.png"), league_path(4)) %>
-			</div><!--end 3 -->
-			<div class="span9">
-				<nav>
-					<ul class="top_nav">
-						<li class=""><%= link_to('Tournament', league_path(4), :class=>"league"); %></li>
-						<!--<li class=""><%#= link_to(Team.find(1).name, team_path(1), :class=>"team"); %></li>
-						<li class=""><%#= link_to('Players', players_team_path(1), :class=>"players"); %></li>
-						<li class=""><%#= link_to('Matches', matches_team_path(1), :class=>"matches"); %></li>
-						<li class=""><%#= link_to('Profile', '#', :class=>"top_profile"); %></li>-->
-					</ul> 
-				</nav>
-			</div>
-		</div>
-	</div>
+        <div class="container" >
+                <div class="row">
+                        <div class="span3">
+                                <p style="margin-top:20px;"><%= link_to(image_tag("mad_logo.png"), league_path(4)) %></p>
+                        </div><!--end 3 -->
+                        <div class="span9">
+                                <div class="pull-right"><%= link_to(image_tag("logo2.png"), "http://hitwicket.com", :target=>'_blank') %></div>
+                        </div>
+                </div>
+        </div>
 </div>

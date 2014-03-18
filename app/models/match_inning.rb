@@ -12,6 +12,22 @@ class MatchInning < ActiveRecord::Base
   end
 
   def self.return_overs(balls)
-  	return (balls/6).to_s+"."+(balls%6).to_s+" ov";
+    if !balls.blank?
+  	 return (balls/6).to_s+"."+(balls%6).to_s+" ov";
+    else
+      return nil
+    end
+  end
+
+  def self.return_overs_without_string(balls)
+    if !balls.blank?
+      if balls%6 == 0
+        return (balls/6).to_s
+      else
+        return (balls/6).to_s+"."+(balls%6).to_s;
+      end
+    else
+      return nil
+    end
   end
 end
